@@ -25,8 +25,8 @@ typedef struct {
     uint16_t    samples[NUM_CHANNELS][NUM_SAMPLES];
 } ECG_adc_sample_t;
 
-/* ADS1115 configured for PGA = +/-2.048 V, 16-bit signed result. */
-#define ADS_FS_VOLTS    (2.048f)
+/* ADS1115 configured for PGA = +/-4.096 V, 16-bit signed result. */
+#define ADS_FS_VOLTS    (4.096f)
 
 static pt_context_t  s_ctx[NUM_CHANNELS];
 static bool          s_init = false;

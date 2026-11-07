@@ -3,45 +3,61 @@
  * @brief Pan-Tompkins QRS detector implementation (streaming).
  *
  * The difference equations and decision rules follow Pan & Tompkins, "A
- * Real-Time QRS Detection Algorithm", IEEE TBME, 1985, adapted to a 357 Hz
- * sample rate. Coefficients were computed offline (see tools/). The decision
- * stage uses adaptive thresholds SPKI/NPKI with T-wave rejection.
+ * Real-Time QRS Detection Algorithm", IEEE TBME, 1985, adapted to a 300 Hz
+ * sample rate (the measured per-lead rate; see pan_tompkins.h). Coefficients
+ * were computed offline (see tools/). The decision stage uses adaptive
+ * thresholds SPKI/NPKI with T-wave rejection.
  *
- * A 60 Hz mains notch filter is applied ahead of the bandpass. Its center is
- * computed for 352 Hz (the observed per-channel rate; the nominal 357 Hz
- * drifts ~2% with bus contention), which gives robust rejection across the
- * observed 349-356 Hz range.
+ * A 60 Hz mains notch filter is applied ahead of the bandpass. The high-pass
+ * stage is 4th order (two cascaded 2nd-order sections) for strong rejection
+ * of respiration baseline wander below ~1 Hz.
  */
 
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "pan_tompkins.h"
 
-/* 60 Hz mains notch, 2nd-order IIR (scipy.signal.iirnotch, Fs=352 Hz, Q=10). */
-#define NOTCH_B0  0.949126f
-#define NOTCH_B1 -0.909735f
-#define NOTCH_B2  0.949126f
-#define NOTCH_A1 -0.909735f
-#define NOTCH_A2  0.898252f
+/* 60 Hz mains notch, 2nd-order IIR (scipy.signal.iirnotch, Fs=300 Hz, Q=10). */
+#define NOTCH_B0  0.940809f
+#define NOTCH_B1 -0.581452f
+#define NOTCH_B2  0.940809f
+#define NOTCH_A1 -0.581452f
+#define NOTCH_A2  0.881619f
 
-/* Butterworth 2nd-order low-pass @ 11 Hz, Fs = 357 Hz (scipy.signal.butter) */
-#define LP_B0  0.008222f
-#define LP_B1  0.016445f
-#define LP_B2  0.008222f
-#define LP_A1 -1.727609f
-#define LP_A2  0.760498f
+/* Butterworth 2nd-order low-pass @ 11 Hz, Fs = 300 Hz (scipy.signal.butter) */
+#define LP_B0  0.011374f
+#define LP_B1  0.022748f
+#define LP_B2  0.011374f
+#define LP_A1 -1.676462f
+#define LP_A2  0.721958f
 
-/* Butterworth 2nd-order high-pass @ 5 Hz, Fs = 357 Hz */
-#define HP_B0  0.939670f
-#define HP_B1 -1.879339f
-#define HP_B2  0.939670f
-#define HP_A1 -1.875696f
-#define HP_A2  0.882982f
+/* Butterworth 4th-order high-pass @ 5 Hz, Fs = 300 Hz, as two cascaded
+ * 2nd-order sections (scipy.signal.butter(..., output='sos')). The 4th-order
+ * response gives ~80 dB attenuation at 0.5 Hz vs ~40 dB for the old 2nd-order
+ * filter, removing respiration baseline wander from the integrator output. */
+#define HP_B0  0.872061f
+#define HP_B1 -1.744121f
+#define HP_B2  0.872061f
+#define HP_A1 -1.813875f
+#define HP_A2  0.823866f
+#define HP2_B0 1.000000f
+#define HP2_B1 -2.000000f
+#define HP2_B2 1.000000f
+#define HP2_A1 -1.912540f
+#define HP2_A2 0.923074f
 
 void pan_tompkins_init(pt_context_t *ctx)
 {
     memset(ctx, 0, sizeof(*ctx));
+}
+
+static int cmp_float_asc(const void *pa, const void *pb)
+{
+    const float a = *(const float *)pa;
+    const float b = *(const float *)pb;
+    return (a > b) - (a < b);
 }
 
 int pan_tompkins_process(pt_context_t *ctx, const float *x, int count,
@@ -68,7 +84,7 @@ int pan_tompkins_process(pt_context_t *ctx, const float *x, int count,
         ctx->lp_y2 = ctx->lp_y1;
         ctx->lp_y1 = lp;
 
-        /* --- high-pass biquad (input = low-pass output) --- */
+        /* --- high-pass biquad, 1st section (input = low-pass output) --- */
         const float hp = HP_B0 * lp + HP_B1 * ctx->hp_x1 + HP_B2 * ctx->hp_x2
                        - HP_A1 * ctx->hp_y1 - HP_A2 * ctx->hp_y2;
         ctx->hp_x2 = ctx->hp_x1;
@@ -76,12 +92,20 @@ int pan_tompkins_process(pt_context_t *ctx, const float *x, int count,
         ctx->hp_y2 = ctx->hp_y1;
         ctx->hp_y1 = hp;
 
+        /* --- high-pass biquad, 2nd section (cascade => 4th order) --- */
+        const float hp2 = HP2_B0 * hp + HP2_B1 * ctx->hp2_x1 + HP2_B2 * ctx->hp2_x2
+                        - HP2_A1 * ctx->hp2_y1 - HP2_A2 * ctx->hp2_y2;
+        ctx->hp2_x2 = ctx->hp2_x1;
+        ctx->hp2_x1 = hp;
+        ctx->hp2_y2 = ctx->hp2_y1;
+        ctx->hp2_y1 = hp2;
+
         /* --- derivative: (2x[n] + x[n-1] - x[n-3] - 2x[n-4]) / 8 --- */
-        const float der = (2.0f * hp + ctx->d1 - ctx->d3 - 2.0f * ctx->d4) * 0.125f;
+        const float der = (2.0f * hp2 + ctx->d1 - ctx->d3 - 2.0f * ctx->d4) * 0.125f;
         ctx->d4 = ctx->d3;
         ctx->d3 = ctx->d2;
         ctx->d2 = ctx->d1;
-        ctx->d1 = hp;
+        ctx->d1 = hp2;
 
         /* --- squaring --- */
         const float sq = der * der;
@@ -94,18 +118,37 @@ int pan_tompkins_process(pt_context_t *ctx, const float *x, int count,
 
         const uint32_t idx = ctx->index++;
 
-        /* --- learning phase: initialize thresholds from the first 2 s --- */
+        /* --- learning phase: collect MWI for robust threshold init --- */
         if (idx < PT_LEARN) {
-            if (mwi > ctx->learn_max) {
-                ctx->learn_max = mwi;
-            }
+            ctx->learn_buf[idx] = mwi;
             if (idx == PT_LEARN - 1) {
-                ctx->spki = ctx->learn_max;
-                ctx->npki = 0.5f * ctx->learn_max;
+                /* Sort the learning-window integrator values in place, then
+                 * seed SPKI from the 95th percentile and NPKI from the median.
+                 * Using the max made a single motion spike in the first 2 s
+                 * set the threshold too high and reject every real R wave. */
+                qsort(ctx->learn_buf, PT_LEARN, sizeof(ctx->learn_buf[0]),
+                      cmp_float_asc);
+                ctx->spki = ctx->learn_buf[(int)(0.95f * PT_LEARN)];
+                ctx->npki = ctx->learn_buf[(int)(0.50f * PT_LEARN)];
                 ctx->thr1 = ctx->npki + 0.25f * (ctx->spki - ctx->npki);
                 ctx->thr2 = 0.5f * ctx->thr1;
             }
             continue;
+        }
+
+        /* --- threshold recovery: decay SPKI toward the noise floor ---
+         * A motion or electrode-pop artifact can cross thr1 and inflate SPKI
+         * far above the real QRS amplitude. Once that happens no beat clears
+         * thr1, so the detector stays quiet for the rest of the recording.
+         * Decay SPKI toward NPKI whenever no QRS has been detected for >1.5 s
+         * — including before the first beat, since the learning phase can be
+         * poisoned by a start-up transient and no beat may ever be detected. */
+        const uint32_t since_qrs = (ctx->last_qrs_index != 0)
+                                 ? (idx - ctx->last_qrs_index) : idx;
+        if (since_qrs > (uint32_t)(PT_THRESH_DECAY_START_S * PT_FS_HZ)) {
+            ctx->spki = ctx->npki + PT_THRESH_DECAY * (ctx->spki - ctx->npki);
+            ctx->thr1 = ctx->npki + 0.25f * (ctx->spki - ctx->npki);
+            ctx->thr2 = 0.5f * ctx->thr1;
         }
 
         /* --- peak tracking (respect refractory period) --- */
@@ -141,6 +184,13 @@ int pan_tompkins_process(pt_context_t *ctx, const float *x, int count,
                     ctx->spki = 0.125f * amp + 0.875f * ctx->spki;
                 } else {
                     ctx->npki = 0.125f * amp + 0.875f * ctx->npki;
+                }
+
+                /* Safety clamp: stop NPKI ratcheting up toward the signal
+                 * level during stretches with no detected beats, which would
+                 * push thr1 above real R waves and dead-lock the detector. */
+                if (ctx->npki > 0.5f * ctx->spki) {
+                    ctx->npki = 0.5f * ctx->spki;
                 }
 
                 ctx->thr1 = ctx->npki + 0.25f * (ctx->spki - ctx->npki);

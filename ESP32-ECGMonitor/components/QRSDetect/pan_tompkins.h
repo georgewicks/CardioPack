@@ -10,8 +10,10 @@
  * One `pt_context_t` must be maintained per ECG channel (the channels are
  * time-multiplexed, so filter/detection state must not be shared).
  *
- * The coefficient set below is designed for a 357 Hz per-channel sample rate
- * (dual ADS1115, ~1429 SPS total across 4 channels).
+ * The coefficient set below is designed for a 300 Hz per-channel sample rate
+ * (measured on 2026-11-05: 36,268 samples over 120.8 s = 300.2 Hz; the nominal
+ * 357 Hz never materialized due to I2C/bus-contention and the chip-0 polling
+ * workaround).
  */
 
 #pragma once
@@ -22,10 +24,16 @@
 extern "C" {
 #endif
 
-#define PT_FS_HZ        357.0f  /* per-channel sample rate (Hz)             */
-#define PT_MWI_WINDOW   54      /* 150 ms moving-window integrator length   */
-#define PT_REFRACTORY   71      /* 200 ms refractory period (samples)       */
-#define PT_LEARN        714     /* 2 s learning phase (samples)             */
+#define PT_FS_HZ        300.0f  /* per-channel sample rate (Hz)             */
+#define PT_MWI_WINDOW   45      /* 150 ms moving-window integrator length   */
+#define PT_REFRACTORY   60      /* 200 ms refractory period (samples)       */
+#define PT_LEARN        600     /* 2 s learning phase (samples)             */
+
+/* Threshold recovery: if no beat is detected for this long, decay the signal
+ * threshold SPKI toward the noise floor so a motion/artifact spike cannot
+ * permanently lock out detection. */
+#define PT_THRESH_DECAY_START_S  1.5f    /* seconds after last beat          */
+#define PT_THRESH_DECAY          0.998f  /* per-sample decay of SPKI -> NPKI */
 
 /** One detected heartbeat. */
 typedef struct {
@@ -40,14 +48,15 @@ typedef struct {
     /* bandpass biquad state (direct-form II) */
     float lp_x1, lp_x2, lp_y1, lp_y2;
     float hp_x1, hp_x2, hp_y1, hp_y2;
+    float hp2_x1, hp2_x2, hp2_y1, hp2_y2;   /* 2nd section of 4th-order HP */
     /* derivative history: x[n-1] .. x[n-4] */
     float d1, d2, d3, d4;
     /* moving-window integrator */
     float mwi_buf[PT_MWI_WINDOW];
     int   mwi_head;
     float mwi_sum;
-    /* learning phase */
-    float learn_max;
+    /* learning phase: MWI history for percentile-based threshold init */
+    float learn_buf[PT_LEARN];
     /* adaptive thresholds */
     float spki, npki, thr1, thr2;
     /* running sample index (absolute, across blocks) */

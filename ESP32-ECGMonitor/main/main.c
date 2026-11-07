@@ -21,6 +21,7 @@
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
 #include "driver/spi_common.h"      // for SPI mode
+#include "esp_rom_sys.h"            // esp_rom_delay_us for ADS1115 polling
 #include "pcf8574.h"
 #include "nvs_flash.h"
 
@@ -51,6 +52,11 @@
 #define SD_DEBUG_INTERACTIVE   (1)
 #define SD_DEBUG_CLOCK_KHZ     (400)   /* slow SPI while probing marginal wiring */
 #define SD_RETRY_DELAY_MS      (2000)  /* delay between auto-retry probes */
+
+/* If chip 0's ALERT/RDY line is dead (bad ADS1115 or broken wire), fall back
+ * to timed polling of its conversions instead of the GPIO interrupt.
+ * Set to 0 to restore interrupt-driven capture on chip 0. */
+#define CHIP0_IGNORE_ALERT_POLL (1)
 
 /* CSV writer retry: survive transient SD-card write glitches. */
 #define CSV_WRITE_RETRIES      (3)
@@ -99,7 +105,7 @@ static const int     ishne_lead_channel[ISHNE_NLEADS] = { 2 };
 #define MOTION_THRESHOLD_G        (0.20f)   /* dynamic g above which = motion  */
 #define MOTION_ON_COUNT           (5)       /* consecutive reads to assert      */
 #define MOTION_OFF_COUNT          (20)      /* consecutive reads to clear       */
-#define MOTION_SAMPLE_INTERVAL_MS (10)      /* ~100 Hz motion sampling          */
+#define MOTION_SAMPLE_INTERVAL_MS (20)      /* ~50 Hz motion sampling           */
 
 static bool bMPU6050 = false;
 static volatile bool motion_artifact_active = false;
@@ -184,6 +190,7 @@ typedef struct {
     SemaphoreHandle_t rdy_sem;
     uint8_t           chip;        // 0 -> channels[0..1], 1 -> channels[2..3]
     int               alert_gpio;  // for diagnostics
+    bool              use_polling; // true -> ignore ALERT/RDY, use timed polling
 } ads_chip_ctx_t;
 
 // One 2-channel pair published by each chip task
@@ -195,9 +202,11 @@ typedef struct {
 
 // Each chip muxes 2 channels (AIN0/GND, AIN1/GND): single-shot, 860 SPS,
 // active-low, COMP_QUE=00 (RDY pin enabled). See DEEPSEEK_FIX_ADC_IRQ.md.
+// PGA = 001 = +-4.096 V (was 010 = +-2.048 V): doubles the input headroom so
+// the AD8232 output (0-3.3 V, ~1.6 V mid) no longer clips at full-scale.
 static const uint16_t ads_mux_config_pair[2] = {
-    0xC5E0, // AIN0/GND
-    0xD5E0  // AIN1/GND
+    0xC3E0, // AIN0/GND
+    0xD3E0  // AIN1/GND
 };
 
 // Global wall clock shared safely via thread updates
@@ -589,7 +598,7 @@ void    Check_ADS1115_Regs( void )
     // Add this readback immediately after the write:
     uint16_t config_val = 0;
     ads111x_read_reg(&ECGDev_ads1115, REG_CONFIG, &config_val);
-    ESP_LOGI(TAG, "Config AFTER write = 0x%04X (expected 0xC5E0)", config_val);
+    ESP_LOGI(TAG, "Config AFTER write = 0x%04X (expected 0xC3E0/0xD3E0)", config_val);
 
     // Also verify threshold registers:
     uint16_t lo = 0, hi = 0;
@@ -640,7 +649,18 @@ void adc_acquisition_task(void *pvParameters)
 
     while (1)
     {
-        if (xSemaphoreTake(ctx->rdy_sem, pdMS_TO_TICKS(2000)) == pdTRUE)
+        bool ready;
+
+        if (ctx->use_polling) {
+            /* No ALERT/RDY interrupt: an 860 SPS single-shot conversion takes
+             * ~1.16 ms, so busy-wait a little longer and then read it. */
+            esp_rom_delay_us(1300);
+            ready = true;
+        } else {
+            ready = (xSemaphoreTake(ctx->rdy_sem, pdMS_TO_TICKS(2000)) == pdTRUE);
+        }
+
+        if (ready)
         {
             adc_signal_count++;
 
@@ -894,8 +914,15 @@ void sd_writer_task(void *pvParameters) {
     last_status = record_start;
 
     while (1) {
-        // Safe RTC Polling: Only check the physical chip once every 1000ms
-        if ((xTaskGetTickCount() - last_rtc_check) > pdMS_TO_TICKS(1000)) {
+        // Safe RTC Polling: Only check the physical chip once every 1000ms.
+        // Skip the I2C read during the active recording window so the DS3231
+        // transaction cannot contend with the ADS1115 acquisitions. The CSV
+        // HH:MM:SS field freezes for the capture, but each record carries a
+        // microsecond timestamp and the ISHNE header holds the true start time.
+        bool recording_active = (record_start != 0) &&
+            ((xTaskGetTickCount() - record_start) < pdMS_TO_TICKS(TEST_RECORD_SECONDS * 1000));
+        if (!recording_active &&
+            (xTaskGetTickCount() - last_rtc_check) > pdMS_TO_TICKS(1000)) {
             if (bEnableDS3231)
             {
                 retv = ds3231_get_time(&DS3231_dev, &local_clock_copy);
@@ -1150,7 +1177,7 @@ void Setup_ADC_SD(void)
 
     ads_rdy_semA = xSemaphoreCreateBinary();
     ads_rdy_semB = xSemaphoreCreateBinary();
-    adc_queue = xQueueCreate(200, sizeof(ads_pair_t));
+    adc_queue = xQueueCreate(1024, sizeof(ads_pair_t));
 
     retv = gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
     if(retv != ESP_OK)
@@ -1178,8 +1205,8 @@ void Setup_ADC_SD(void)
         ESP_LOGI(TAG, "gpio_isr_handler_add OK on GPIO %d", ADS_ALERT_GPIO_B);
     }
 
-    chip_ctx[0] = (ads_chip_ctx_t){ &ECGDev_ads1115,   ads_rdy_semA, 0, ADS_ALERT_GPIO_A };
-    chip_ctx[1] = (ads_chip_ctx_t){ &ECGDev_ads1115_b, ads_rdy_semB, 1, ADS_ALERT_GPIO_B };
+    chip_ctx[0] = (ads_chip_ctx_t){ &ECGDev_ads1115,   ads_rdy_semA, 0, ADS_ALERT_GPIO_A, CHIP0_IGNORE_ALERT_POLL };
+    chip_ctx[1] = (ads_chip_ctx_t){ &ECGDev_ads1115_b, ads_rdy_semB, 1, ADS_ALERT_GPIO_B, 0 };
 
     // High-priority capture on cores 0/1; file management on core 1.
     xTaskCreatePinnedToCore(adc_acquisition_task, "ECG_AcqA", 8192, &chip_ctx[0], 10, NULL, 0);
