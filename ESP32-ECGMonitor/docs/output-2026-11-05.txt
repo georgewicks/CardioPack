@@ -1,0 +1,288 @@
+v6.0.2/esp-idf/tools/idf.py'' --target esp32s3 '/home/gwicks/Cardiology_instrumentation/ESP32-ECGMonitor/build/ESP32-ECGMonitor.elf'
+--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2f54
+entry 0x403c8908
+I (24) boot: ESP-IDF v6.0.2 2nd stage bootloader
+I (25) boot: compile time Oct 30 2026 19:33:46
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (28) boot: efuse block revision: v1.3
+I (31) boot.esp32s3: Boot SPI Speed : 80MHz
+I (35) boot.esp32s3: SPI Mode       : DIO
+I (39) boot.esp32s3: SPI Flash Size : 2MB
+I (43) boot: Enabling RNG early entropy source...
+I (47) boot: Partition Table:
+I (50) boot: ## Label            Usage          Type ST Offset   Length
+I (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (69) boot:  2 factory          factory app      00 00 00010000 00100000
+I (76) boot: End of partition table
+I (79) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=22a44h (141892) map
+I (112) esp_image: segment 1: paddr=00032a6c vaddr=3fc9a800 size=05230h ( 21040) load
+I (117) esp_image: segment 2: paddr=00037ca4 vaddr=40374000 size=08374h ( 33652) load
+I (125) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a1164h (659812) map
+I (246) esp_image: segment 4: paddr=000e118c vaddr=4037c374 size=0e3d8h ( 58328) load
+I (259) esp_image: segment 5: paddr=000ef56c vaddr=50000000 size=00024h (    36) load
+I (269) boot: Loaded app from partition at offset 0x10000
+I (269) boot: Disabling RNG early entropy source...
+I (279) cpu_start: Multicore app
+I (288) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (289) cpu_start: Pro cpu start user code
+I (289) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (294) app_init: Project name:     ESP32-ECGMonitor
+I (299) app_init: App version:      9cdddd7-dirty
+I (303) app_init: Compile time:     Nov  2 2026 20:38:24
+I (308) app_init: ELF file SHA256:  30f20ac65...
+I (313) app_init: ESP-IDF:          v6.0.2
+I (316) efuse_init: Min chip rev:     v0.0
+I (320) efuse_init: Max chip rev:     v0.99 
+I (324) efuse_init: Chip rev:         v0.2
+I (328) heap_init: Initializing. RAM available for dynamic allocation:
+I (334) heap_init: At 3FCA53A0 len 00044370 (272 KiB): RAM
+I (339) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (345) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (350) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (356) spi_flash: detected chip: generic
+I (359) spi_flash: flash io: dio
+W (362) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (375) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (380) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (388) main_task: Started on CPU0
+I (408) main_task: Calling app_main()
+I (408) main-ECGMon: app_main: starting
+I (408) main-ECGMon: do_chip_info started
+This is esp32s3 chip with 2 CPU core(s), WiFi/BLE, silicon revision v0.2, 2MB external flash
+Minimum free heap size: 321820 bytes
+I (418) I2C_Handling: InitI2C: starting
+I (918) I2C_Handling: ./main/I2C_Handling.c: called
+I (918) I2C_Handling: &bus_handle = 0x3fca10f0
+I (918) I2C_Handling: ads1115_handle = 0x3fce9f94
+I (918) I2C_Handling: ads1115_b_handle = 0x3fce9fc8
+I (918) I2C_Handling: gpio_exp_handle = 0x3fce9ffc
+I (1928) I2C_Handling: Starting I2C scanner on bus 0...
+I (2928) I2C_Handling: 
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- 48 49 -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- 68 69 -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+I (4968) main-ECGMon: FindAndInitDevices: called
+I (4968) main-ECGMon: ADS1115 #1 (0x48) found - do the initialization
+I (4968) ads111x: ads111x_init_desc
+I (4978) ads111x: ADS1115 devhandle = 0x3fce9f94
+I (4978) I2C_Handling: ads111x_init_desc = 0(ESP_OK)
+I (4978) I2C_Handling: Setting low threshold...
+I (4988) I2C_Handling: Setting high threshold...
+I (4988) I2C_Handling: Lo thresh readback = 0x0000
+I (4998) I2C_Handling: Hi thresh readback = 0x8000
+I (4998) main-ECGMon: ADS1115 #2 (0x49) found - do the initialization
+I (5008) ads111x: ads111x_init_desc
+I (5008) ads111x: ADS1115 devhandle = 0x3fce9fc8
+I (5018) I2C_Handling: ads111x_init_desc(B) = 0(ESP_OK)
+I (5018) main-ECGMon: Check for DS3231 
+I (5018) main-ECGMon: DS3231 found - do the initialization
+I (5028) I2C_Handling: InitDS3231 called
+I (5028) main-ECGMon: Check for MPU6050 
+I (5048) main-ECGMon: MPU6050 (0x69) found and initialized - motion gating enabled
+I (5048) main-ECGMon: end FindAndInitDevices
+I (5048) main-ECGMon: Init the PCF8574
+I (5048) main-ECGMon: InitSD_SPI_debug: interactive mode (Y=continue, N=re-init)
+
+--- SD init attempt #1 ---
+I (5058) sdspi_transaction: cmd=52, R1 response: command not supported
+I (5108) sdspi_transaction: cmd=5, R1 response: command not supported
+MOUNT OK. Card info: Name: SD08G
+>>> Press Y to continue booting, or N to re-run SD init: (no console input) mounted OK -- continuing boot.
+I (5178) main-ECGMon: Log output mirrored to /sdcard/debug.log
+File written successfully.
+I (5558) main-ECGMon: ESP_WIFI_MODE_STA
+I (5558) pp: pp rom version: e7ae62f
+I (5558) net80211: net80211 rom version: e7ae62f
+I (5568) wifi:wifi driver task: 3fcac4b0, prio:23, stack:6656, core=0
+I (5578) wifi:wifi firmware version: 00ad238
+I (5578) wifi:wifi certification version: v7.0
+I (5578) wifi:config NVS flash: enabled
+I (5578) wifi:config nano formatting: disabled
+I (5578) wifi:Init data frame dynamic rx buffer num: 32
+I (5588) wifi:Init static rx mgmt buffer num: 5
+I (5588) wifi:Init management short buffer num: 32
+I (5598) wifi:Init dynamic tx buffer num: 32
+I (5598) wifi:Init static tx FG buffer num: 2
+I (5598) wifi:Init static rx buffer size: 1600
+I (5608) wifi:Init static rx buffer num: 10
+I (5608) wifi:Init dynamic rx buffer num: 32
+I (5618) wifi_init: rx ba win: 6
+I (5618) wifi_init: accept mbox: 6
+I (5618) wifi_init: tcpip mbox: 32
+I (5618) wifi_init: udp mbox: 6
+I (5628) wifi_init: tcp mbox: 6
+I (5628) wifi_init: tcp tx win: 5760
+I (5628) wifi_init: tcp rx win: 5760
+I (5638) wifi_init: tcp mss: 1440
+I (5638) wifi_init: WiFi IRAM OP enabled
+I (5638) wifi_init: WiFi RX IRAM OP enabled
+I (5648) ECGMon-WIFI:  **** *** SSID = GandInet
+I (5648) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10
+I (5698) wifi:mode : sta (1c:db:d4:93:d3:58)
+I (5698) wifi:enable tsf
+I (5698) ECGMon-WIFI: Total APs scanned = 0
+I (5708) ECGMon-WIFI: Waiting for connection
+I (6318) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0
+I (6318) wifi:state: init -> auth (0xb0)
+I (6328) wifi:state: auth -> assoc (0x0)
+I (6338) wifi:state: assoc -> run (0x10)
+I (6368) wifi:connected with GandInet, aid = 5, channel 6, BW20, bssid = ec:a9:40:3b:86:32
+I (6368) wifi:security: WPA2-PSK, phy: bgn, rssi: -44, cipher(pairwise:0x3, group:0x3),pmf:0
+I (6378) wifi:pm start, type: 1
+
+I (6378) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (6388) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time:10000
+I (6428) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+I (6428) wifi:<ba-add>idx:0 (ifx:0, ec:a9:40:3b:86:32), tid:6, ssn:2, winSize:64
+I (7738) esp_netif_handlers: sta ip: 10.0.0.17, mask: 255.255.255.0, gw: 10.0.0.1
+I (7738) ECGMon-WIFI: Successfully acquired IP: 10.0.0.17
+I (7738) ECGMon-WIFI: Connection completed (supposedly)
+I (7738) main-ECGMon:  Done with wifi_init_sta 
+I (7748) ECGMon-WIFI: Initializing SNTP Service...
+I (9748) ECGMon-WIFI: Waiting for network time sync... (1/10)
+I (11748) ECGMon-WIFI: Waiting for network time sync... (2/10)
+I (12018) wifi:<ba-add>idx:1 (ifx:0, ec:a9:40:3b:86:32), tid:0, ssn:0, winSize:64
+I (12088) ECGMon-WIFI: Notification: System time synchronized successfully!
+I (12088) ECGMon-WIFI: Synchronized Date/Time: Thu Nov  5 17:56:40 2026
+I (12088) main-ECGMon: Waiting for system time to sync... (1/30)
+I (13098) main-ECGMon: NTP Synchronized successfully. Updating DS3231 RTC...
+I (13098) main-ECGMon: DS3231 successfully updated with Wi-Fi time.
+I (13098) wifi:state: run -> init (0x0)
+I (13108) wifi:pm stop, total sleep time: 5867724 us / 6725615 us
+
+I (13108) wifi:<ba-del>idx:1, tid:0
+I (13108) wifi:<ba-del>idx:0, tid:6
+I (13118) ECGMon-WIFI: Wi-Fi disconnected, reason=8
+I (13148) wifi:flush txq
+I (13148) wifi:stop sw txq
+I (13148) wifi:lmac stop hw txq
+I (13148) ECGMon-WIFI: Wi-Fi stopped after NTP sync (power saving)
+I (13148) main-ECGMon: Setup_ADC_SD: called
+I (13148) main-ECGMon: gpio_install_isr_service OK
+I (13158) main-ECGMon: gpio_isr_handler_add OK on GPIO 21
+I (13158) main-ECGMon: gpio_isr_handler_add OK on GPIO 7
+I (13168) main-ECGMon: adc_acquisition_task: chip 0 on GPIO 21
+I (13168) main-ECGMon: adc_acquisition_task: chip 1 on GPIO 7
+I (13178) main-ECGMon: sd_writer_task: called
+I (13178) main-ECGMon: Running... SD count = 0, ADC count = 3  ISR count = 0
+I (13268) main-ECGMon: Motion reference logging -> /sdcard/motion.csv
+I (13358) main-ECGMon: CSV opened for append; existing size = 14581067 bytes
+I (13358) main-ECGMon: Recording starts in 10 s...
+I (14358) main-ECGMon: Recording starts in 9 s...
+I (15188) main-ECGMon: Running... SD count = 0, ADC count = 2642  ISR count = 1416
+I (15358) main-ECGMon: Recording starts in 8 s...
+I (16398) main-ECGMon: Recording starts in 7 s...
+I (17188) main-ECGMon: Running... SD count = 0, ADC count = 5273  ISR count = 2829
+I (17398) main-ECGMon: Recording starts in 6 s...
+I (18398) main-ECGMon: Recording starts in 5 s...
+I (19188) main-ECGMon: Running... SD count = 0, ADC count = 7905  ISR count = 4242
+I (19398) main-ECGMon: Recording starts in 4 s...
+I (20398) main-ECGMon: Recording starts in 3 s...
+I (21188) main-ECGMon: Running... SD count = 0, ADC count = 10535  ISR count = 5655
+I (21398) main-ECGMon: Recording starts in 2 s...
+I (22398) main-ECGMon: Recording starts in 1 s...
+I (23188) main-ECGMon: Running... SD count = 0, ADC count = 13167  ISR count = 7068
+I (23398) main-ECGMon: *** RECORDING STARTED: remain still for 120 s ***
+I (23558) main-ECGMon: ISHNE recording -> /sdcard/ecg_20261105_175652.ecg (1 lead(s), 350 Hz)
+I (25188) main-ECGMon: Running... SD count = 587, ADC count = 15778  ISR count = 8466
+I (27188) main-ECGMon: Running... SD count = 1136, ADC count = 18393  ISR count = 9861
+I (29198) main-ECGMon: Running... SD count = 1810, ADC count = 21021  ISR count = 11264
+I (31238) main-ECGMon: Running... SD count = 2427, ADC count = 23673  ISR count = 12682
+I (33528) main-ECGMon: Running... SD count = 3122, ADC count = 26660  ISR count = 14279
+I (33558) main-ECGMon: Recording... 110 s remaining
+I (35528) main-ECGMon: Running... SD count = 3713, ADC count = 29273  ISR count = 15675
+I (37658) main-ECGMon: Running... SD count = 4379, ADC count = 32062  ISR count = 17165
+I (39708) main-ECGMon: Running... SD count = 5000, ADC count = 34729  ISR count = 18592
+I (41708) main-ECGMon: Running... SD count = 5609, ADC count = 37340  ISR count = 19985
+I (43558) main-ECGMon: Recording... 100 s remaining
+I (43708) main-ECGMon: Running... SD count = 6218, ADC count = 39956  ISR count = 21383
+I (45708) main-ECGMon: Running... SD count = 6823, ADC count = 42560  ISR count = 22776
+I (47708) main-ECGMon: Running... SD count = 7387, ADC count = 45170  ISR count = 24169
+QRS ch2: R-peak at sample 7816, RR = 0 ms
+I (49728) main-ECGMon: Running... SD count = 7996, ADC count = 47812  ISR count = 25578
+I (51818) main-ECGMon: Running... SD count = 8677, ADC count = 50538  ISR count = 27034
+I (53738) main-ECGMon: Recording... 90 s remaining
+I (53978) main-ECGMon: Running... SD count = 9340, ADC count = 53357  ISR count = 28540
+QRS ch2: R-peak at sample 9135, RR = 3694 ms
+QRS ch2: R-peak at sample 9311, RR = 492 ms
+I (55978) main-ECGMon: Running... SD count = 9945, ADC count = 55973  ISR count = 29935
+I (58218) main-ECGMon: Running... SD count = 10630, ADC count = 58899  ISR count = 31497
+I (60218) main-ECGMon: Running... SD count = 11240, ADC count = 61509  ISR count = 32891
+I (62218) main-ECGMon: Running... SD count = 11832, ADC count = 64120  ISR count = 34286
+I (63738) main-ECGMon: Recording... 80 s remaining
+I (64218) main-ECGMon: Running... SD count = 12456, ADC count = 66734  ISR count = 35684
+QRS ch2: R-peak at sample 12825, RR = 9843 ms
+I (66218) main-ECGMon: Running... SD count = 13063, ADC count = 69343  ISR count = 37079
+I (68218) main-ECGMon: Running... SD count = 13670, ADC count = 71953  ISR count = 38470
+I (70408) main-ECGMon: Running... SD count = 14337, ADC count = 74813  ISR count = 39997
+I (72448) main-ECGMon: Running... SD count = 14959, ADC count = 77474  ISR count = 41418
+I (73818) main-ECGMon: Recording... 70 s remaining
+I (74448) main-ECGMon: Running... SD count = 15569, ADC count = 80084  ISR count = 42809
+I (76448) main-ECGMon: Running... SD count = 16124, ADC count = 82689  ISR count = 44199
+I (78508) main-ECGMon: Running... SD count = 16796, ADC count = 85372  ISR count = 45633
+QRS ch2: R-peak at sample 16766, RR = 11039 ms
+I (80778) main-ECGMon: Running... SD count = 17492, ADC count = 88336  ISR count = 47215
+I (82778) main-ECGMon: Running... SD count = 18080, ADC count = 90946  ISR count = 48608
+I (83818) main-ECGMon: Recording... 60 s remaining
+I (84908) main-ECGMon: Running... SD count = 18747, ADC count = 93718  ISR count = 50087
+I (86908) main-ECGMon: Running... SD count = 19343, ADC count = 96332  ISR count = 51481
+I (88908) main-ECGMon: Running... SD count = 19951, ADC count = 98944  ISR count = 52876
+QRS ch2: R-peak at sample 20346, RR = 10028 ms
+I (90978) main-ECGMon: Running... SD count = 20582, ADC count = 101651  ISR count = 54322
+I (93158) main-ECGMon: Running... SD count = 21243, ADC count = 104487  ISR count = 55836
+I (93818) main-ECGMon: Recording... 50 s remaining
+I (95158) main-ECGMon: Running... SD count = 21851, ADC count = 107099  ISR count = 57232
+QRS ch3: R-peak at sample 21747, RR = 0 ms
+I (97158) main-ECGMon: Running... SD count = 22450, ADC count = 109703  ISR count = 58623
+I (99338) main-ECGMon: Running... SD count = 23120, ADC count = 112549  ISR count = 60143
+I (101338) main-ECGMon: Running... SD count = 23450, ADC count = 115192  ISR count = 61548
+I (103338) main-ECGMon: Running... SD count = 24055, ADC count = 117796  ISR count = 62942
+I (103818) main-ECGMon: Recording... 40 s remaining
+I (105338) main-ECGMon: Running... SD count = 24660, ADC count = 120410  ISR count = 64336
+I (107338) main-ECGMon: Running... SD count = 25252, ADC count = 123017  ISR count = 65731
+I (109498) main-ECGMon: Running... SD count = 25925, ADC count = 125842  ISR count = 67238
+I (111498) main-ECGMon: Running... SD count = 26533, ADC count = 128453  ISR count = 68633
+I (113498) main-ECGMon: Running... SD count = 27143, ADC count = 131066  ISR count = 70027
+I (113818) main-ECGMon: Recording... 30 s remaining
+I (115768) main-ECGMon: Running... SD count = 27833, ADC count = 134031  ISR count = 71611
+I (117768) main-ECGMon: Running... SD count = 28412, ADC count = 136636  ISR count = 73005
+I (119858) main-ECGMon: Running... SD count = 29075, ADC count = 139366  ISR count = 74462
+I (121858) main-ECGMon: Running... SD count = 29683, ADC count = 141977  ISR count = 75858
+I (123818) main-ECGMon: Recording... 20 s remaining
+I (123868) main-ECGMon: Running... SD count = 30290, ADC count = 144596  ISR count = 77262
+I (125868) main-ECGMon: Running... SD count = 30848, ADC count = 147208  ISR count = 78655
+I (127868) main-ECGMon: Running... SD count = 31511, ADC count = 149827  ISR count = 80052
+I (129878) main-ECGMon: Running... SD count = 32122, ADC count = 152454  ISR count = 81457
+I (131878) main-ECGMon: Running... SD count = 32731, ADC count = 155065  ISR count = 82849
+I (133818) main-ECGMon: Recording... 10 s remaining
+I (133878) main-ECGMon: Running... SD count = 33333, ADC count = 157671  ISR count = 84242
+I (135878) main-ECGMon: Running... SD count = 33948, ADC count = 160287  ISR count = 85638
+I (137878) main-ECGMon: Running... SD count = 34557, ADC count = 162893  ISR count = 87026
+I (139878) main-ECGMon: Running... SD count = 35164, ADC count = 165501  ISR count = 88420
+I (141878) main-ECGMon: Running... SD count = 35773, ADC count = 168115  ISR count = 89815
+I (143878) main-ECGMon: Running... SD count = 36268, ADC count = 170726  ISR count = 91211
+I (144198) main-ECGMon: ISHNE file closed (36268 samples/lead)
+I (144198) main-ECGMon: *** RECORDING COMPLETE: 36268 records, 0 write errors, file 14581067 -> 16037666 bytes. You may move now. ***
+I (144208) main-ECGMon: sd_writer_task: recording finished -- idle spin
+I (146048) main-ECGMon: Running... SD count = 36268, ADC count = 173577  ISR count = 92741
+I (148118) main-ECGMon: Running... SD count = 36268, ADC count = 176300  ISR count = 94204
+
+gwicks@gwicks-G465:~/Cardiology_instrumentation/ESP32-ECGMonitor$ 

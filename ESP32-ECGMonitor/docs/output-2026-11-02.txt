@@ -1,0 +1,353 @@
+/home/gwicks/.espressif/tools/python/v6.0.2/venv/bin/python3' '/home/gwicks/.espressif/v6.0.2/esp-idf/tools/idf_monitor.py' -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --make ''/home/gwicks/.espressif/tools/python/v6.0.2/venv/bin/python3' '/home/gwicks/.espressif/v6.0.2/esp-idf/tools/idf.py'' --target esp32s3 '/home/gwicks/Cardiology_instrumentation/ESP32-ECGMonitor/build/ESP32-ECGMonitor.elf'
+gwicks@gwicks-G465:~/Cardiology_instrumentation/ESP32-ECGMonitor$ export IDF_PATH='/home/gwicks/.espressif/v6.0.2/esp-idf'
+gwicks@gwicks-G465:~/Cardiology_instrumentation/ESP32-ECGMonitor$ '/home/gwicks/.espressif/tools/python/v6.0.2/venv/bin/python3' '/home/gwicks/.espressif/v6.0.2/esp-idf/tools/idf_monitor.py' -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --make ''/home/gwicks/.espressif/tools/python/v6.0.2/venv/bin/python3' '/home/gwicks/.espressif/v6.0.2/esp-idf/tools/idf.py'' --target esp32s3 '/home/gwicks/Cardiology_instrumentation/ESP32-ECGMonitor/build/ESP32-ECGMonitor.elf'
+--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2f54
+entry 0x403c8908
+I (24) boot: ESP-IDF v6.0.2 2nd stage bootloader
+I (25) boot: compile time Oct 30 2026 19:33:46
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (28) boot: efuse block revision: v1.3
+I (31) boot.esp32s3: Boot SPI Speed : 80MHz
+I (35) boot.esp32s3: SPI Mode       : DIO
+I (39) boot.esp32s3: SPI Flash Size : 2MB
+I (43) boot: Enabling RNG early entropy source...
+I (47) boot: Partition Table:
+I (50) boot: ## Label            Usage          Type ST Offset   Length
+I (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (69) boot:  2 factory          factory app      00 00 00010000 00100000
+I (76) boot: End of partition table
+I (79) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=22a44h (141892) map
+I (112) esp_image: segment 1: paddr=00032a6c vaddr=3fc9a800 size=05230h ( 21040) load
+I (117) esp_image: segment 2: paddr=00037ca4 vaddr=40374000 size=08374h ( 33652) load
+I (125) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a1144h (659780) map
+I (246) esp_image: segment 4: paddr=000e116c vaddr=4037c374 size=0e3d8h ( 58328) load
+I (259) esp_image: segment 5: paddr=000ef54c vaddr=50000000 size=00024h (    36) load
+I (269) boot: Loaded app from partition at offset 0x10000
+I (269) boot: Disabling RNG early entropy source...
+I (279) cpu_start: Multicore app
+I (288) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (289) cpu_start: Pro cpu start user code
+I (289) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (294) app_init: Project name:     ESP32-ECGMonitor
+I (299) app_init: App version:      76fd070-dirty
+I (303) app_init: Compile time:     Oct 31 2026 00:06:58
+I (308) app_init: ELF file SHA256:  85873a39a...
+I (313) app_init: ESP-IDF:          v6.0.2
+I (316) efuse_init: Min chip rev:     v0.0
+I (320) efuse_init: Max chip rev:     v0.99 
+I (324) efuse_init: Chip rev:         v0.2
+I (328) heap_init: Initializing. RAM available for dynamic allocation:
+I (334) heap_init: At 3FCA53A0 len 00044370 (272 KiB): RAM
+I (339) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (345) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (350) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (356) spi_flash: detected chip: generic
+I (359) spi_flash: flash io: dio
+W (362) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (375) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (380) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (388) main_task: Started on CPU0
+I (408) main_task: Calling app_main()
+I (408) main-ECGMon: app_main: starting
+I (408) main-ECGMon: do_chip_info started
+This is esp32s3 chip with 2 CPU core(s), WiFi/BLE, silicon revision v0.2, 2MB external flash
+Minimum free heap size: 321820 bytes
+I (418) I2C_Handling: InitI2C: starting
+I (918) I2C_Handling: ./main/I2C_Handling.c: called
+I (918) I2C_Handling: &bus_handle = 0x3fca10e8
+I (918) I2C_Handling: ads1115_handle = 0x3fce9f94
+I (918) I2C_Handling: ads1115_b_handle = 0x3fce9fc8
+I (918) I2C_Handling: gpio_exp_handle = 0x3fce9ffc
+I (1928) I2C_Handling: Starting I2C scanner on bus 0...
+I (2928) I2C_Handling: 
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- 48 49 -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- 68 69 -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+I (4968) main-ECGMon: FindAndInitDevices: called
+I (4968) main-ECGMon: ADS1115 #1 (0x48) found - do the initialization
+I (4968) ads111x: ads111x_init_desc
+I (4978) ads111x: ADS1115 devhandle = 0x3fce9f94
+I (4978) I2C_Handling: ads111x_init_desc = 0(ESP_OK)
+I (4978) I2C_Handling: Setting low threshold...
+I (4988) I2C_Handling: Setting high threshold...
+I (4988) I2C_Handling: Lo thresh readback = 0x0000
+I (4998) I2C_Handling: Hi thresh readback = 0x8000
+I (4998) main-ECGMon: ADS1115 #2 (0x49) found - do the initialization
+I (5008) ads111x: ads111x_init_desc
+I (5008) ads111x: ADS1115 devhandle = 0x3fce9fc8
+I (5018) I2C_Handling: ads111x_init_desc(B) = 0(ESP_OK)
+I (5018) main-ECGMon: Check for DS3231 
+I (5018) main-ECGMon: DS3231 found - do the initialization
+I (5028) I2C_Handling: InitDS3231 called
+I (5028) main-ECGMon: Check for MPU6050 
+I (5048) main-ECGMon: MPU6050 (0x69) found and initialized - motion gating enabled
+I (5048) main-ECGMon: end FindAndInitDevices
+I (5048) main-ECGMon: Init the PCF8574
+I (5048) main-ECGMon: InitSD_SPI_debug: interactive mode (Y=continue, N=re-init)
+
+--- SD init attempt #1 ---
+I (5058) sdspi_transaction: cmd=52, R1 response: command not supported
+I (5108) sdspi_transaction: cmd=5, R1 response: command not supported
+MOUNT OK. Card info: Name: SD08G
+>>> Press Y to continue booting, or N to re-run SD init: (no console input) mounted OK -- continuing boot.
+I (5178) main-ECGMon: Log output mirrored to /sdcard/debug.log
+File written successfully.
+I (5558) main-ECGMon: ESP_WIFI_MODE_STA
+I (5558) pp: pp rom version: e7ae62f
+I (5558) net80211: net80211 rom version: e7ae62f
+I (5568) wifi:wifi driver task: 3fcac534, prio:23, stack:6656, core=0
+I (5578) wifi:wifi firmware version: 00ad238
+I (5578) wifi:wifi certification version: v7.0
+I (5578) wifi:config NVS flash: enabled
+I (5578) wifi:config nano formatting: disabled
+I (5578) wifi:Init data frame dynamic rx buffer num: 32
+I (5588) wifi:Init static rx mgmt buffer num: 5
+I (5588) wifi:Init management short buffer num: 32
+I (5598) wifi:Init dynamic tx buffer num: 32
+I (5598) wifi:Init static tx FG buffer num: 2
+I (5598) wifi:Init static rx buffer size: 1600
+I (5608) wifi:Init static rx buffer num: 10
+I (5608) wifi:Init dynamic rx buffer num: 32
+I (5618) wifi_init: rx ba win: 6
+I (5618) wifi_init: accept mbox: 6
+I (5618) wifi_init: tcpip mbox: 32
+I (5618) wifi_init: udp mbox: 6
+I (5628) wifi_init: tcp mbox: 6
+I (5628) wifi_init: tcp tx win: 5760
+I (5628) wifi_init: tcp rx win: 5760
+I (5638) wifi_init: tcp mss: 1440
+I (5638) wifi_init: WiFi IRAM OP enabled
+I (5638) wifi_init: WiFi RX IRAM OP enabled
+I (5648) ECGMon-WIFI:  **** *** SSID = GandInet
+I (5648) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10
+I (5698) wifi:mode : sta (1c:db:d4:93:d3:58)
+I (5698) wifi:enable tsf
+I (5698) ECGMon-WIFI: Total APs scanned = 0
+I (5698) ECGMon-WIFI: Waiting for connection
+I (6308) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0
+I (6308) wifi:state: init -> auth (0xb0)
+I (6318) wifi:state: auth -> assoc (0x0)
+I (6328) wifi:state: assoc -> run (0x10)
+I (6358) wifi:connected with GandInet, aid = 5, channel 6, BW20, bssid = ec:a9:40:3b:86:32
+I (6368) wifi:security: WPA2-PSK, phy: bgn, rssi: -38, cipher(pairwise:0x3, group:0x3), pmf:0
+I (6368) wifi:pm start, type: 1
+
+I (6368) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (6378) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (6388) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+I (6438) wifi:<ba-add>idx:0 (ifx:0, ec:a9:40:3b:86:32), tid:6, ssn:2, winSize:64
+I (7588) esp_netif_handlers: sta ip: 10.0.0.17, mask: 255.255.255.0, gw: 10.0.0.1
+I (7588) ECGMon-WIFI: Successfully acquired IP: 10.0.0.17
+I (7588) ECGMon-WIFI: Connection completed (supposedly)
+I (7588) main-ECGMon:  Done with wifi_init_sta 
+I (7598) ECGMon-WIFI: Initializing SNTP Service...
+I (8528) wifi:<ba-add>idx:1 (ifx:0, ec:a9:40:3b:86:32), tid:0, ssn:0, winSize:64
+I (8608) ECGMon-WIFI: Notification: System time synchronized successfully!
+I (8608) ECGMon-WIFI: Synchronized Date/Time: Mon Nov  2 19:23:18 2026
+I (8608) main-ECGMon: Waiting for system time to sync... (1/30)
+I (9618) main-ECGMon: NTP Synchronized successfully. Updating DS3231 RTC...
+I (9618) main-ECGMon: DS3231 successfully updated with Wi-Fi time.
+I (9618) wifi:state: run -> init (0x0)
+I (9628) wifi:pm stop, total sleep time: 2650642 us / 3252782 us
+
+I (9628) wifi:<ba-del>idx:1, tid:0
+I (9628) wifi:<ba-del>idx:0, tid:6
+I (9638) ECGMon-WIFI: Wi-Fi disconnected, reason=8
+I (9668) wifi:flush txq
+I (9668) wifi:stop sw txq
+I (9668) wifi:lmac stop hw txq
+I (9668) ECGMon-WIFI: Wi-Fi stopped after NTP sync (power saving)
+I (9668) main-ECGMon: Setup_ADC_SD: called
+I (9668) main-ECGMon: gpio_install_isr_service OK
+I (9678) main-ECGMon: gpio_isr_handler_add OK on GPIO 21
+I (9678) main-ECGMon: gpio_isr_handler_add OK on GPIO 7
+I (9688) main-ECGMon: adc_acquisition_task: chip 0 on GPIO 21
+I (9688) main-ECGMon: adc_acquisition_task: chip 1 on GPIO 7
+I (9688) main-ECGMon: Running... SD count = 0, ADC count = 0  ISR count = 0
+I (9698) main-ECGMon: sd_writer_task: called
+I (9758) main-ECGMon: Motion reference logging -> /sdcard/motion.csv
+I (9828) main-ECGMon: CSV opened for append; existing size = 12103405 bytes
+I (9828) main-ECGMon: Recording starts in 10 s...
+I (10828) main-ECGMon: Recording starts in 9 s...
+W (11688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (11698) main-ECGMon: Running... SD count = 0, ADC count = 1414  ISR count = 1414
+I (11828) main-ECGMon: Recording starts in 8 s...
+I (12908) main-ECGMon: Recording starts in 7 s...
+W (13688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (13698) main-ECGMon: Running... SD count = 0, ADC count = 2832  ISR count = 2832
+I (13908) main-ECGMon: Recording starts in 6 s...
+I (14908) main-ECGMon: Recording starts in 5 s...
+W (15688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (15698) main-ECGMon: Running... SD count = 0, ADC count = 4250  ISR count = 4250
+I (15908) main-ECGMon: Recording starts in 4 s...
+I (16908) main-ECGMon: Recording starts in 3 s...
+W (17688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (17698) main-ECGMon: Running... SD count = 0, ADC count = 5669  ISR count = 5669
+I (17908) main-ECGMon: Recording starts in 2 s...
+I (18908) main-ECGMon: Recording starts in 1 s...
+W (19688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (19698) main-ECGMon: Running... SD count = 0, ADC count = 7087  ISR count = 7087
+I (19908) main-ECGMon: *** RECORDING STARTED: remain still for 120 s ***
+I (20028) main-ECGMon: ISHNE recording -> /sdcard/ecg_20261102_192330.ecg (1 lead(s),350 Hz)
+W (21688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (21698) main-ECGMon: Running... SD count = 0, ADC count = 8503  ISR count = 8503
+W (23688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (23698) main-ECGMon: Running... SD count = 0, ADC count = 9921  ISR count = 9921
+W (25688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (25698) main-ECGMon: Running... SD count = 0, ADC count = 11339  ISR count = 11339
+W (27688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (27698) main-ECGMon: Running... SD count = 0, ADC count = 12757  ISR count = 12757
+W (29688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (29698) main-ECGMon: Running... SD count = 0, ADC count = 14176  ISR count = 14176
+I (30028) main-ECGMon: Recording... 110 s remaining
+W (31688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (31698) main-ECGMon: Running... SD count = 0, ADC count = 15594  ISR count = 15594
+W (33688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (33698) main-ECGMon: Running... SD count = 0, ADC count = 17013  ISR count = 17013
+W (35688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (35698) main-ECGMon: Running... SD count = 0, ADC count = 18431  ISR count = 18431
+W (37688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (37698) main-ECGMon: Running... SD count = 0, ADC count = 19850  ISR count = 19850
+W (39688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (39698) main-ECGMon: Running... SD count = 0, ADC count = 21272  ISR count = 21272
+I (40028) main-ECGMon: Recording... 100 s remaining
+W (41688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (41698) main-ECGMon: Running... SD count = 0, ADC count = 22690  ISR count = 22690
+W (43688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (43698) main-ECGMon: Running... SD count = 0, ADC count = 24109  ISR count = 24109
+W (45688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (45698) main-ECGMon: Running... SD count = 0, ADC count = 25527  ISR count = 25527
+W (47688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (47698) main-ECGMon: Running... SD count = 0, ADC count = 26947  ISR count = 26947
+W (49688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (49698) main-ECGMon: Running... SD count = 0, ADC count = 28368  ISR count = 28368
+I (50028) main-ECGMon: Recording... 90 s remaining
+W (51688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (51698) main-ECGMon: Running... SD count = 0, ADC count = 29788  ISR count = 29788
+W (53688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (53698) main-ECGMon: Running... SD count = 0, ADC count = 31208  ISR count = 31208
+W (55688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (55698) main-ECGMon: Running... SD count = 0, ADC count = 32628  ISR count = 32628
+W (57688) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (57698) main-ECGMon: Running... SD count = 0, ADC count = 34040  ISR count = 34041
+W (59778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (59778) main-ECGMon: Running... SD count = 0, ADC count = 35486  ISR count = 35486
+I (60028) main-ECGMon: Recording... 80 s remaining
+W (61778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (61778) main-ECGMon: Running... SD count = 0, ADC count = 36905  ISR count = 36905
+W (63778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (63778) main-ECGMon: Running... SD count = 0, ADC count = 38323  ISR count = 38323
+W (65778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (65778) main-ECGMon: Running... SD count = 0, ADC count = 39742  ISR count = 39742
+W (67778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (67778) main-ECGMon: Running... SD count = 0, ADC count = 41160  ISR count = 41160
+W (69778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (69778) main-ECGMon: Running... SD count = 0, ADC count = 42580  ISR count = 42580
+I (70028) main-ECGMon: Recording... 70 s remaining
+W (71778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (71778) main-ECGMon: Running... SD count = 0, ADC count = 43998  ISR count = 43998
+W (73778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (73778) main-ECGMon: Running... SD count = 0, ADC count = 45416  ISR count = 45416
+W (75778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (75778) main-ECGMon: Running... SD count = 0, ADC count = 46835  ISR count = 46835
+W (77778) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (77778) main-ECGMon: Running... SD count = 0, ADC count = 48255  ISR count = 48255
+W (79808) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (79808) main-ECGMon: Running... SD count = 0, ADC count = 49686  ISR count = 49686
+I (80028) main-ECGMon: Recording... 60 s remaining
+W (81808) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (81808) main-ECGMon: Running... SD count = 0, ADC count = 51105  ISR count = 51105
+W (83808) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (83808) main-ECGMon: Running... SD count = 0, ADC count = 52524  ISR count = 52524
+W (85808) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (85808) main-ECGMon: Running... SD count = 0, ADC count = 53943  ISR count = 53943
+W (87808) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (87808) main-ECGMon: Running... SD count = 0, ADC count = 55362  ISR count = 55362
+W (89868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (89868) main-ECGMon: Running... SD count = 0, ADC count = 56810  ISR count = 56810
+I (90028) main-ECGMon: Recording... 50 s remaining
+W (91868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (91868) main-ECGMon: Running... SD count = 0, ADC count = 58229  ISR count = 58229
+W (93868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (93868) main-ECGMon: Running... SD count = 0, ADC count = 59647  ISR count = 59647
+W (95868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (95868) main-ECGMon: Running... SD count = 0, ADC count = 61066  ISR count = 61066
+W (97868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (97868) main-ECGMon: Running... SD count = 0, ADC count = 62487  ISR count = 62487
+W (99868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (99868) main-ECGMon: Running... SD count = 0, ADC count = 63906  ISR count = 63906
+I (100028) main-ECGMon: Recording... 40 s remaining
+W (101868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (101868) main-ECGMon: Running... SD count = 0, ADC count = 65324  ISR count = 65325
+W (103868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (103868) main-ECGMon: Running... SD count = 0, ADC count = 66743  ISR count = 66743
+W (105868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (105868) main-ECGMon: Running... SD count = 0, ADC count = 68160  ISR count = 68160
+W (107868) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (107868) main-ECGMon: Running... SD count = 0, ADC count = 69579  ISR count = 69579
+W (109878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (109908) main-ECGMon: Running... SD count = 0, ADC count = 71019  ISR count = 71019
+I (110028) main-ECGMon: Recording... 30 s remaining
+W (111878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (111908) main-ECGMon: Running... SD count = 0, ADC count = 72438  ISR count = 72438
+W (113878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (113908) main-ECGMon: Running... SD count = 0, ADC count = 73856  ISR count = 73856
+W (115878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (115908) main-ECGMon: Running... SD count = 0, ADC count = 75274  ISR count = 75274
+W (117878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (117908) main-ECGMon: Running... SD count = 0, ADC count = 76690  ISR count = 76690
+W (119878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (119908) main-ECGMon: Running... SD count = 0, ADC count = 78108  ISR count = 78108
+I (120028) main-ECGMon: Recording... 20 s remaining
+W (121878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (121908) main-ECGMon: Running... SD count = 0, ADC count = 79526  ISR count = 79526
+W (123878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (123908) main-ECGMon: Running... SD count = 0, ADC count = 80944  ISR count = 80944
+W (125878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (125908) main-ECGMon: Running... SD count = 0, ADC count = 82362  ISR count = 82362
+W (127878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (127908) main-ECGMon: Running... SD count = 0, ADC count = 83782  ISR count = 83782
+W (129878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (129908) main-ECGMon: Running... SD count = 0, ADC count = 85200  ISR count = 85200
+I (130028) main-ECGMon: Recording... 10 s remaining
+W (131878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (131908) main-ECGMon: Running... SD count = 0, ADC count = 86619  ISR count = 86619
+W (133878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (133908) main-ECGMon: Running... SD count = 0, ADC count = 88037  ISR count = 88037
+W (135878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (135908) main-ECGMon: Running... SD count = 0, ADC count = 89455  ISR count = 89455
+W (137878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (137908) main-ECGMon: Running... SD count = 0, ADC count = 90875  ISR count = 90875
+W (139878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (139908) main-ECGMon: Running... SD count = 0, ADC count = 92293  ISR count = 92293
+I (140358) main-ECGMon: ISHNE file closed (0 samples/lead)
+I (140358) main-ECGMon: *** RECORDING COMPLETE: 0 records, 0 write errors, file 12103405 -> 12103405 bytes. You may move now. ***
+I (140368) main-ECGMon: sd_writer_task: recording finished -- idle spin
+W (141878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (141908) main-ECGMon: Running... SD count = 0, ADC count = 93711  ISR count = 93711
+W (143878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (143908) main-ECGMon: Running... SD count = 0, ADC count = 95129  ISR count = 95129
+W (145878) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (145908) main-ECGMon: Running... SD count = 0, ADC count = 96541  ISR count = 96542
+W (147908) main-ECGMon: chip 0 (GPIO 21): timeout waiting for ALERT/RDY
+I (147908) main-ECGMon: Running... SD count = 0, ADC count = 97958  ISR count = 97958
+
+gwicks@gwicks-G465:~/Cardiology_instrumentation/ESP32-ECGMonitor$ 

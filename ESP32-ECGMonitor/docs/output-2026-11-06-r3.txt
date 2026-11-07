@@ -1,0 +1,584 @@
+Script started on 2026-11-06 00:13:47-06:00 [COMMAND="/home/gwicks/.espressif/tools/python/v6.0.2/venv/bin/python3 /home/gwicks/.espressif/v6.0.2/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 /home/gwicks/Cardiology_instrumentation/ESP32-ECGMonitor/build/ESP32-ECGMonitor.elf" <not executed on terminal>]
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x28 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2f54
+entry 0x403c8908
+[0;32mI (24) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Oct 30 2026 19:33:46[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.3[0m
+[0;32mI (31) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (35) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (43) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (50) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (76) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=22a44h (141892) map[0m
+[0;32mI (112) esp_image: segment 1: paddr=00032a6c vaddr=3fc9a800 size=05230h ( 21040) load[0m
+[0;32mI (117) esp_image: segment 2: paddr=00037ca4 vaddr=40374000 size=08374h ( 33652) load[0m
+[0;32mI (125) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a1278h (660088) map[0m
+[0;32mI (246) esp_image: segment 4: paddr=000e12a0 vaddr=4037c374 size=0e3d8h ( 58328) load[0m
+[0;32mI (259) esp_image: segment 5: paddr=000ef680 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (269) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (269) boot: Disabling RNG early entropy source...[0m
+[0;32mI (280) cpu_start: Multicore app[0m
+[0;32mI (288) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (289) cpu_start: Pro cpu start user code[0m
+[0;32mI (289) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (290) app_init: Application information:[0m
+[0;32mI (294) app_init: Project name:     ESP32-ECGMonitor[0m
+[0;32mI (299) app_init: App version:      9cdddd7-dirty[0m
+[0;32mI (303) app_init: Compile time:     Nov  2 2026 20:38:24[0m
+[0;32mI (308) app_init: ELF file SHA256:  4d0295268...[0m
+[0;32mI (313) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (317) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (320) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (324) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (328) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (335) heap_init: At 3FCA78C0 len 00041E50 (263 KiB): RAM[0m
+[0;32mI (340) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (345) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (350) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (356) spi_flash: detected chip: generic[0m
+[0;32mI (359) spi_flash: flash io: dio[0m
+[0;33mW (362) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (375) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (381) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (388) main_task: Started on CPU0[0m
+[0;32mI (408) main_task: Calling app_main()[0m
+[0;32mI (408) main-ECGMon: app_main: starting[0m
+[0;32mI (408) main-ECGMon: do_chip_info started[0m
+This is esp32s3 chip with 2 CPU core(s), WiFi/BLE, silicon revision v0.2, 2MB external flash
+Minimum free heap size: 312316 bytes
+[0;32mI (418) I2C_Handling: InitI2C: starting[0m
+[0;32mI (918) I2C_Handling: ./main/I2C_Handling.c: called[0m
+[0;32mI (918) I2C_Handling: &bus_handle = 0x3fca10f0[0m
+[0;32mI (918) I2C_Handling: ads1115_handle = 0x3fce9f94[0m
+[0;32mI (918) I2C_Handling: ads1115_b_handle = 0x3fce9fc8[0m
+[0;32mI (918) I2C_Handling: gpio_exp_handle = 0x3fce9ffc[0m
+[0;32mI (1928) I2C_Handling: Starting I2C scanner on bus 0...[0m
+[0;32mI (2928) I2C_Handling: [0m
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- 48 49 -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- 68 69 -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+[0;32mI (4968) main-ECGMon: FindAndInitDevices: called[0m
+[0;32mI (4968) main-ECGMon: ADS1115 #1 (0x48) found - do the initialization[0m
+[0;32mI (4968) ads111x: ads111x_init_desc[0m
+[0;32mI (4978) ads111x: ADS1115 devhandle = 0x3fce9f94[0m
+[0;32mI (4978) I2C_Handling: ads111x_init_desc = 0(ESP_OK)[0m
+[0;32mI (4978) I2C_Handling: Setting low threshold...[0m
+[0;32mI (4988) I2C_Handling: Setting high threshold...[0m
+[0;32mI (4988) I2C_Handling: Lo thresh readback = 0x0000[0m
+[0;32mI (4998) I2C_Handling: Hi thresh readback = 0x8000[0m
+[0;32mI (4998) main-ECGMon: ADS1115 #2 (0x49) found - do the initialization[0m
+[0;32mI (5008) ads111x: ads111x_init_desc[0m
+[0;32mI (5008) ads111x: ADS1115 devhandle = 0x3fce9fc8[0m
+[0;32mI (5018) I2C_Handling: ads111x_init_desc(B) = 0(ESP_OK)[0m
+[0;32mI (5018) main-ECGMon: Check for DS3231 [0m
+[0;32mI (5018) main-ECGMon: DS3231 found - do the initialization[0m
+[0;32mI (5028) I2C_Handling: InitDS3231 called[0m
+[0;32mI (5028) main-ECGMon: Check for MPU6050 [0m
+[0;32mI (5048) main-ECGMon: MPU6050 (0x69) found and initialized - motion gating enabled[0m
+[0;32mI (5048) main-ECGMon: end FindAndInitDevices[0m
+[0;32mI (5048) main-ECGMon: Init the PCF8574[0m
+[0;32mI (5048) main-ECGMon: InitSD_SPI_debug: interactive mode (Y=continue, N=re-init)[0m
+
+--- SD init attempt #1 ---
+[0;32mI (5098) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+MOUNT OK. Card info: Name: SD08G
+>>> Press Y to continue booting, or N to re-run SD init: (no console input) mounted OK -- continuing boot.
+[0;32mI (5168) main-ECGMon: Log output mirrored to /sdcard/debug.log[0m
+File written successfully.
+[0;32mI (5548) main-ECGMon: ESP_WIFI_MODE_STA[0m
+[0;32mI (5548) pp: pp rom version: e7ae62f[0m
+[0;32mI (5548) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (5558) wifi:wifi driver task: 3fcae9d0, prio:23, stack:6656, core=0[0m
+[0;32mI (5568) wifi:wifi firmware version: 00ad238[0m
+[0;32mI (5568) wifi:wifi certification version: v7.0[0m
+[0;32mI (5568) wifi:config NVS flash: enabled[0m
+[0;32mI (5568) wifi:config nano formatting: disabled[0m
+[0;32mI (5568) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (5578) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (5578) wifi:Init management short buffer num: 32[0m
+[0;32mI (5588) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (5588) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (5588) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (5598) wifi:Init static rx buffer num: 10[0m
+[0;32mI (5598) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (5608) wifi_init: rx ba win: 6[0m
+[0;32mI (5608) wifi_init: accept mbox: 6[0m
+[0;32mI (5608) wifi_init: tcpip mbox: 32[0m
+[0;32mI (5608) wifi_init: udp mbox: 6[0m
+[0;32mI (5618) wifi_init: tcp mbox: 6[0m
+[0;32mI (5618) wifi_init: tcp tx win: 5760[0m
+[0;32mI (5618) wifi_init: tcp rx win: 5760[0m
+[0;32mI (5628) wifi_init: tcp mss: 1440[0m
+[0;32mI (5628) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (5628) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (5638) ECGMon-WIFI:  **** *** SSID = GandInet[0m
+[0;32mI (5638) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10[0m
+[0;32mI (5688) wifi:mode : sta (1c:db:d4:93:d3:58)[0m
+[0;32mI (5688) wifi:enable tsf[0m
+[0;32mI (5688) ECGMon-WIFI: Total APs scanned = 0[0m
+[0;32mI (5688) ECGMon-WIFI: Waiting for connection[0m
+[0;32mI (6298) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (6298) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (6308) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (6318) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (6348) wifi:connected with GandInet, aid = 1, channel 6, BW20, bssid = ec:a9:40:3b:86:32[0m
+[0;32mI (6348) wifi:security: WPA2-PSK, phy: bgn, rssi: -41, cipher(pairwise:0x3, group:0x3), pmf:0[0m
+[0;32mI (6358) wifi:pm start, type: 1[0m
+
+[0;32mI (6358) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (6368) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (6388) wifi:<ba-add>idx:0 (ifx:0, ec:a9:40:3b:86:32), tid:6, ssn:2, winSize:64[0m
+[0;32mI (6418) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (7628) esp_netif_handlers: sta ip: 10.0.0.17, mask: 255.255.255.0, gw: 10.0.0.1[0m
+[0;32mI (7628) ECGMon-WIFI: Successfully acquired IP: 10.0.0.17[0m
+[0;32mI (7628) ECGMon-WIFI: Connection completed (supposedly)[0m
+[0;32mI (7628) main-ECGMon:  Done with wifi_init_sta [0m
+[0;32mI (7638) ECGMon-WIFI: Initializing SNTP Service...[0m
+[0;32mI (8458) wifi:<ba-add>idx:1 (ifx:0, ec:a9:40:3b:86:32), tid:0, ssn:0, winSize:64[0m
+[0;32mI (8548) ECGMon-WIFI: Notification: System time synchronized successfully![0m
+[0;32mI (8548) ECGMon-WIFI: Synchronized Date/Time: Fri Nov  6 00:13:56 2026[0m
+[0;32mI (8548) main-ECGMon: Waiting for system time to sync... (1/30)[0m
+[0;32mI (9558) main-ECGMon: NTP Synchronized successfully. Updating DS3231 RTC...[0m
+[0;32mI (9558) main-ECGMon: DS3231 successfully updated with Wi-Fi time.[0m
+[0;32mI (9558) wifi:state: run -> init (0x0)[0m
+[0;32mI (9568) wifi:pm stop, total sleep time: 2651821 us / 3206966 us[0m
+
+[0;32mI (9568) wifi:<ba-del>idx:1, tid:0[0m
+[0;32mI (9568) wifi:<ba-del>idx:0, tid:6[0m
+[0;32mI (9578) ECGMon-WIFI: Wi-Fi disconnected, reason=8[0m
+[0;32mI (9608) wifi:flush txq[0m
+[0;32mI (9608) wifi:stop sw txq[0m
+[0;32mI (9608) wifi:lmac stop hw txq[0m
+[0;32mI (9608) ECGMon-WIFI: Wi-Fi stopped after NTP sync (power saving)[0m
+[0;32mI (9608) main-ECGMon: Setup_ADC_SD: called[0m
+[0;32mI (9608) main-ECGMon: gpio_install_isr_service OK[0m
+[0;32mI (9618) main-ECGMon: gpio_isr_handler_add OK on GPIO 21[0m
+[0;32mI (9618) main-ECGMon: gpio_isr_handler_add OK on GPIO 7[0m
+[0;32mI (9628) main-ECGMon: adc_acquisition_task: chip 0 on GPIO 21[0m
+[0;32mI (9628) main-ECGMon: adc_acquisition_task: chip 1 on GPIO 7[0m
+[0;32mI (9638) main-ECGMon: Running... SD count = 0, ADC count = 3  ISR count = 0[0m
+[0;32mI (9638) main-ECGMon: sd_writer_task: called[0m
+[0;32mI (9738) main-ECGMon: Motion reference logging -> /sdcard/motion.csv[0m
+[0;32mI (9858) main-ECGMon: CSV opened for append; existing size = 19572689 bytes[0m
+[0;32mI (9858) main-ECGMon: Recording starts in 10 s...[0m
+[0;32mI (10858) main-ECGMon: Recording starts in 9 s...[0m
+[0;32mI (11648) main-ECGMon: Running... SD count = 0, ADC count = 2629  ISR count = 1409[0m
+[0;32mI (11858) main-ECGMon: Recording starts in 8 s...[0m
+[0;32mI (12868) main-ECGMon: Recording starts in 7 s...[0m
+[0;32mI (13648) main-ECGMon: Running... SD count = 0, ADC count = 5252  ISR count = 2817[0m
+[0;32mI (13868) main-ECGMon: Recording starts in 6 s...[0m
+[0;32mI (14868) main-ECGMon: Recording starts in 5 s...[0m
+[0;32mI (15648) main-ECGMon: Running... SD count = 0, ADC count = 7878  ISR count = 4225[0m
+[0;32mI (15868) main-ECGMon: Recording starts in 4 s...[0m
+[0;32mI (16868) main-ECGMon: Recording starts in 3 s...[0m
+[0;32mI (17648) main-ECGMon: Running... SD count = 0, ADC count = 10501  ISR count = 5632[0m
+[0;32mI (17868) main-ECGMon: Recording starts in 2 s...[0m
+[0;32mI (18868) main-ECGMon: Recording starts in 1 s...[0m
+[0;32mI (19648) main-ECGMon: Running... SD count = 0, ADC count = 13120  ISR count = 7039[0m
+[0;32mI (19868) main-ECGMon: *** RECORDING STARTED: remain still for 120 s ***[0m
+[0;32mI (20068) main-ECGMon: ISHNE recording -> /sdcard/ecg_20261106_001407.ecg (1 lead(s), 350 Hz)[0m
+[1;31mE (20068) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (20068) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (21308) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (21308) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (21648) main-ECGMon: Running... SD count = 566, ADC count = 15724  ISR count = 8430[0m
+[1;31mE (22518) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (22518) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (23648) main-ECGMon: Running... SD count = 1139, ADC count = 18329  ISR count = 9818[0m
+[1;31mE (23708) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (23708) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (24968) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (24968) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 1388, RR = 0 ms
+[0;32mI (25678) main-ECGMon: Running... SD count = 1578, ADC count = 20507  ISR count = 10744[0m
+[1;31mE (26098) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (26098) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (26978) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (27188) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (27188) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (27678) main-ECGMon: Running... SD count = 1789, ADC count = 22241  ISR count = 11228[0m
+[1;31mE (28338) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (28338) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (29598) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (29598) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (29678) main-ECGMon: Running... SD count = 2397, ADC count = 24847  ISR count = 12618[0m
+[0;32mI (30248) main-ECGMon: Recording... 110 s remaining[0m
+[1;31mE (30798) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (30798) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (31678) main-ECGMon: Running... SD count = 2736, ADC count = 26864  ISR count = 13397[0m
+[1;31mE (31898) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (31898) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (32798) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (33008) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (33008) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (33688) main-ECGMon: Running... SD count = 2975, ADC count = 28731  ISR count = 14014[0m
+[1;31mE (34248) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (34248) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (35448) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (35448) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (35688) main-ECGMon: Running... SD count = 3611, ADC count = 31330  ISR count = 15401[0m
+[1;31mE (36958) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (36958) main-ECGMon: chip 0: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (37688) main-ECGMon: Running... SD count = 4145, ADC count = 33930  ISR count = 16789[0m
+[1;31mE (38308) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (38318) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (39518) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (39518) main-ECGMon: chip 0: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (39688) main-ECGMon: Running... SD count = 4732, ADC count = 36534  ISR count = 18181[0m
+[0;32mI (40248) main-ECGMon: Recording... 100 s remaining[0m
+[1;31mE (40748) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (40748) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (41688) main-ECGMon: Running... SD count = 5340, ADC count = 39138  ISR count = 19569[0m
+[1;31mE (41958) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (41968) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 5280, RR = 12973 ms
+[1;31mE (43158) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (43158) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (43688) main-ECGMon: Running... SD count = 5426, ADC count = 40596  ISR count = 19764[0m
+[0;33mW (43968) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (44268) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (44268) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (45448) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (45448) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (45698) main-ECGMon: Running... SD count = 5949, ADC count = 43020  ISR count = 20962[0m
+[1;31mE (46738) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (46738) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (47698) main-ECGMon: Running... SD count = 6265, ADC count = 44983  ISR count = 21685[0m
+[1;31mE (47878) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (47878) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (48738) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (48978) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (48978) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (49698) main-ECGMon: Running... SD count = 6506, ADC count = 46893  ISR count = 22350[0m
+[1;31mE (50218) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (50218) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (50248) main-ECGMon: Recording... 90 s remaining[0m
+[1;31mE (51528) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 7077, RR = 5990 ms
+[1;31mE (51598) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (51698) main-ECGMon: Running... SD count = 7112, ADC count = 49384  ISR count = 23627[0m
+[1;31mE (52668) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (52778) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (53598) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[0;32mI (53698) main-ECGMon: Running... SD count = 7136, ADC count = 50724  ISR count = 23694[0m
+[1;31mE (53788) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (53788) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (54908) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (55018) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 7705, RR = 2093 ms
+[0;32mI (55748) main-ECGMon: Running... SD count = 7761, ADC count = 53387  ISR count = 25119[0m
+[1;31mE (56298) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (56298) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 7916, RR = 703 ms
+[1;31mE (57568) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (57568) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (57748) main-ECGMon: Running... SD count = 8292, ADC count = 55878  ISR count = 26390[0m
+[1;31mE (58698) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (58698) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (59578) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[0;32mI (59748) main-ECGMon: Running... SD count = 8331, ADC count = 57262  ISR count = 26506[0m
+[1;31mE (59798) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (59798) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (60248) main-ECGMon: Recording... 80 s remaining[0m
+[1;31mE (60978) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (60988) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (61798) main-ECGMon: Running... SD count = 8962, ADC count = 59927  ISR count = 27931[0m
+[1;31mE (62188) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (62188) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (63468) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (63468) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (63808) main-ECGMon: Running... SD count = 9571, ADC count = 62540  ISR count = 29326[0m
+[1;31mE (64688) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (64698) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 9676, RR = 5866 ms
+[0;32mI (65808) main-ECGMon: Running... SD count = 10144, ADC count = 65143  ISR count = 30717[0m
+[1;31mE (67098) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (67098) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (67878) main-ECGMon: Running... SD count = 10230, ADC count = 66575  ISR count = 30836[0m
+[0;33mW (67978) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (68198) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (68198) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (69368) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (69368) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (69878) main-ECGMon: Running... SD count = 10653, ADC count = 68771  ISR count = 31804[0m
+[0;32mI (70248) main-ECGMon: Recording... 70 s remaining[0m
+[1;31mE (70468) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (70468) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (71378) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (71558) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (71558) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (71888) main-ECGMon: Running... SD count = 10806, ADC count = 70387  ISR count = 32155[0m
+[1;31mE (72778) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (72778) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (73888) main-ECGMon: Running... SD count = 11383, ADC count = 72991  ISR count = 33545[0m
+[1;31mE (73978) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (73978) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (75238) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (75238) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (75978) main-ECGMon: Running... SD count = 12028, ADC count = 75703  ISR count = 34995[0m
+[1;31mE (76438) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (76618) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (77628) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (77728) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (77978) main-ECGMon: Running... SD count = 12627, ADC count = 78310  ISR count = 36390[0m
+[1;31mE (78988) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (78988) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 12933, RR = 10856 ms
+[0;32mI (79978) main-ECGMon: Running... SD count = 13215, ADC count = 80912  ISR count = 37780[0m
+[0;32mI (80258) main-ECGMon: Recording... 60 s remaining[0m
+[1;31mE (80258) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (80258) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (81478) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (81478) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (81978) main-ECGMon: Running... SD count = 13814, ADC count = 83516  ISR count = 39170[0m
+[1;31mE (82668) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (82668) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (83868) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (83868) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (83978) main-ECGMon: Running... SD count = 14429, ADC count = 86119  ISR count = 40560[0m
+[1;31mE (85048) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (85048) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (85978) main-ECGMon: Running... SD count = 15036, ADC count = 88723  ISR count = 41950[0m
+[1;31mE (86308) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (86308) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (87518) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (87518) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (87978) main-ECGMon: Running... SD count = 15638, ADC count = 91313  ISR count = 43335[0m
+[1;31mE (88788) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (88788) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 15743, RR = 9366 ms
+[0;32mI (89978) main-ECGMon: Running... SD count = 16191, ADC count = 93922  ISR count = 44729[0m
+[0;32mI (90798) main-ECGMon: Recording... 50 s remaining[0m
+[1;31mE (90798) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (90798) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (92138) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (92138) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (92798) main-ECGMon: Running... SD count = 16875, ADC count = 97597  ISR count = 46695[0m
+[1;31mE (93368) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (93368) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (94558) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (94558) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (94798) main-ECGMon: Running... SD count = 17479, ADC count = 100193  ISR count = 48083[0m
+QRS ch3: R-peak at sample 17439, RR = 5653 ms
+[1;31mE (95758) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (95758) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (96798) main-ECGMon: Running... SD count = 18074, ADC count = 102798  ISR count = 49474[0m
+[1;31mE (96928) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (96928) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (98128) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (98128) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 18383, RR = 3146 ms
+[0;32mI (98938) main-ECGMon: Running... SD count = 18735, ADC count = 105582  ISR count = 50961[0m
+[1;31mE (99318) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (99318) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (100578) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (100578) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (100798) main-ECGMon: Recording... 40 s remaining[0m
+[0;32mI (100938) main-ECGMon: Running... SD count = 19340, ADC count = 108183  ISR count = 52351[0m
+[1;31mE (101798) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (101798) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 19610, RR = 4090 ms
+[0;32mI (102938) main-ECGMon: Running... SD count = 19909, ADC count = 110788  ISR count = 53741[0m
+[1;31mE (103068) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (103078) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (104348) ads111x: Could not read from register 0x00[0m
+[1;31mE (104348) main-ECGMon: chip 0: bad conversion! 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 20224, RR = 2046 ms
+QRS ch3: R-peak at sample 20290, RR = 220 ms
+[0;32mI (105078) main-ECGMon: Running... SD count = 20599, ADC count = 113582  ISR count = 55232[0m
+[1;31mE (105648) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (105648) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (106778) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (106778) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (107078) main-ECGMon: Running... SD count = 20772, ADC count = 115233  ISR count = 55629[0m
+[0;33mW (107648) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (107868) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (107868) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (109068) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (109068) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (109078) main-ECGMon: Running... SD count = 21148, ADC count = 117449  ISR count = 56619[0m
+[1;31mE (110358) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (110358) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (110888) main-ECGMon: Recording... 30 s remaining[0m
+[0;32mI (111078) main-ECGMon: Running... SD count = 21808, ADC count = 120048  ISR count = 58009[0m
+[1;31mE (111558) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (111558) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 21764, RR = 4913 ms
+QRS ch3: R-peak at sample 22066, RR = 1006 ms
+[1;31mE (112858) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (112968) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (113078) main-ECGMon: Running... SD count = 22383, ADC count = 122653  ISR count = 59401[0m
+QRS ch3: R-peak at sample 22500, RR = 1446 ms
+[1;31mE (114178) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (114178) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 22694, RR = 646 ms
+[0;32mI (115078) main-ECGMon: Running... SD count = 22983, ADC count = 125260  ISR count = 60796[0m
+[1;31mE (115558) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (115558) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (116838) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (116838) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (117078) main-ECGMon: Running... SD count = 23547, ADC count = 127869  ISR count = 62188[0m
+[1;31mE (118098) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (118098) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 23676, RR = 3273 ms
+[0;32mI (119078) main-ECGMon: Running... SD count = 24150, ADC count = 130471  ISR count = 63577[0m
+[1;31mE (119278) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (119278) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch3: R-peak at sample 24206, RR = 1766 ms
+QRS ch3: R-peak at sample 24369, RR = 543 ms
+[1;31mE (120568) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (120578) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (120888) main-ECGMon: Recording... 20 s remaining[0m
+[0;32mI (121078) main-ECGMon: Running... SD count = 24712, ADC count = 133081  ISR count = 64972[0m
+[0;33mW (121868) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (121978) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (122088) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (122198) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (122308) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (122498) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (122608) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (122718) main-ECGMon: MPU6050 read failed[0m
+[1;31mE (122768) ads111x: Could not write 0xc3e0 to register 0x01 Error=263 (ESP_ERR_TIMEOUT)[0m
+[1;31mE (122768) main-ECGMon: chip 0: config write failed = 263(ESP_ERR_TIMEOUT)[0m
+[1;31mE (122768) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (122778) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (122898) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (122898) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (123078) main-ECGMon: Running... SD count = 24971, ADC count = 134171  ISR count = 65451[0m
+[1;31mE (123918) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (123918) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (124778) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (125008) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (125008) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (125078) main-ECGMon: Running... SD count = 25043, ADC count = 135603  ISR count = 65615[0m
+[1;31mE (126098) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (126098) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (127018) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[0;32mI (127078) main-ECGMon: Running... SD count = 25062, ADC count = 136917  ISR count = 65656[0m
+[0;33mW (127288) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (127398) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (127508) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (127618) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (127728) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (127838) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (127948) main-ECGMon: MPU6050 read failed[0m
+[0;33mW (128058) main-ECGMon: MPU6050 read failed[0m
+[1;31mE (128178) ads111x: Could not write 0xd3e0 to register 0x01 Error=263 (ESP_ERR_TIMEOUT)[0m
+[1;31mE (128178) main-ECGMon: chip 0: config write failed = 263(ESP_ERR_TIMEOUT)[0m
+[1;31mE (128178) ads111x: Could not write 0xd3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (128188) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (128268) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (128268) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (129078) main-ECGMon: Running... SD count = 25095, ADC count = 137625  ISR count = 65731[0m
+[1;31mE (129278) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (129278) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;33mW (130188) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[1;31mE (130418) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (130418) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch1: R-peak at sample 25139, RR = 0 ms
+QRS ch2: R-peak at sample 25017, RR = 0 ms
+[0;32mI (130888) main-ECGMon: Recording... 10 s remaining[0m
+[0;32mI (131088) main-ECGMon: Running... SD count = 25317, ADC count = 139502  ISR count = 66354[0m
+[1;31mE (131698) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (131698) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (132898) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (132898) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (133088) main-ECGMon: Running... SD count = 25973, ADC count = 142105  ISR count = 67745[0m
+QRS ch3: R-peak at sample 25947, RR = 5260 ms
+[1;31mE (134138) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (134138) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (135088) main-ECGMon: Running... SD count = 26577, ADC count = 144700  ISR count = 69132[0m
+[1;31mE (135358) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (135358) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch2: R-peak at sample 26548, RR = 5103 ms
+QRS ch2: R-peak at sample 26810, RR = 873 ms
+[1;31mE (136578) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (136578) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[0;32mI (137088) main-ECGMon: Running... SD count = 27156, ADC count = 147300  ISR count = 70519[0m
+QRS ch2: R-peak at sample 27084, RR = 913 ms
+QRS ch3: R-peak at sample 27233, RR = 4286 ms
+[1;31mE (137788) ECG_DS3231: ds3231_get_time err from i2c_master_transmit_receive = 264(ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (137788) main-ECGMon: ds3232_get_time error = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch2: R-peak at sample 27361, RR = 923 ms
+[1;31mE (139018) ads111x: Could not write 0xc3e0 to register 0x01 Error=264 (ESP_ERR_INVALID_RESPONSE)[0m
+[1;31mE (139018) main-ECGMon: chip 1: config write failed = 264(ESP_ERR_INVALID_RESPONSE)[0m
+QRS ch2: R-peak at sample 27639, RR = 926 ms
+[0;32mI (139088) main-ECGMon: Running... SD count = 27773, ADC count = 149859  ISR count = 71860[0m
+[0;32mI (140498) main-ECGMon: ISHNE file closed (27773 samples/lead)[0m
+[0;32mI (140498) main-ECGMon: *** RECORDING COMPLETE: 27773 records, 0 write errors, file 19572689 -> 20720832 bytes. You may move now. ***[0m
+[0;32mI (140508) main-ECGMon: sd_writer_task: recording finished -- idle spin[0m
+[0;33mW (141018) main-ECGMon: chip 1 (GPIO 7): timeout waiting for ALERT/RDY[0m
+[0;32mI (141088) main-ECGMon: Running... SD count = 27773, ADC count = 151171  ISR count = 71906[0m
+[0;32mI (143088) main-ECGMon: Running... SD count = 27773, ADC count = 153792  ISR count = 73314[0m
+[0;32mI (145108) main-ECGMon: Running... SD count = 27773, ADC count = 156438  ISR count = 74734[0m
+[0;32mI (147108) main-ECGMon: Running... SD count = 27773, ADC count = 159064  ISR count = 76143[0m
+[0;32mI (149108) main-ECGMon: Running... SD count = 27773, ADC count = 161695  ISR count = 77556[0m
+[0;32mI (151108) main-ECGMon: Running... SD count = 27773, ADC count = 164323  ISR count = 78967[0m
+[0;32mI (153108) main-ECGMon: Running... SD count = 27773, ADC count = 166951  ISR count = 80377[0m
+[0;32mI (155108) main-ECGMon: Running... SD count = 27773, ADC count = 169570  ISR count = 81784[0m
+[0;32mI (157108) main-ECGMon: Running... SD count = 27773, ADC count = 172194  ISR count = 83192[0m
+[0;32mI (159108) main-ECGMon: Running... SD count = 27773, ADC count = 174821  ISR count = 84602[0m
+[0;32mI (161108) main-ECGMon: Running... SD count = 27773, ADC count = 177448  ISR count = 86012[0m
+[0;32mI (163108) main-ECGMon: Running... SD count = 27773, ADC count = 180069  ISR count = 87419[0m
+[0;32mI (165128) main-ECGMon: Running... SD count = 27773, ADC count = 182718  ISR count = 88842[0m
+[0;32mI (167128) main-ECGMon: Running... SD count = 27773, ADC count = 185339  ISR count = 90249[0m
+[0;32mI (169128) main-ECGMon: Running... SD count = 27773, ADC count = 187970  ISR count = 91660[0m
+[0;32mI (171128) main-ECGMon: Running... SD count = 27773, ADC count = 190596  ISR count = 93069[0m
+[0;32mI (173128) main-ECGMon: Running... SD count = 27773, ADC count = 193217  ISR count = 94477[0m
+[0;32mI (175128) main-ECGMon: Running... SD count = 27773, ADC count = 195833  ISR count = 95880[0m
+[0;32mI (177128) main-ECGMon: Running... SD count = 27773, ADC count = 198458  ISR count = 97289[0m
+[0;32mI (179128) main-ECGMon: Running... SD count = 27773, ADC count = 201085  ISR count = 98699[0m
+[0;32mI (181128) main-ECGMon: Running... SD count = 27773, ADC count = 203712  ISR count = 100109[0m
+[0;32mI (183128) main-ECGMon: Running... SD count = 27773, ADC count = 206334  ISR count = 101518[0m
+[0;32mI (185298) main-ECGMon: Running... SD count = 27773, ADC count = 209181  ISR count = 103046[0m
+[0;32mI (187298) main-ECGMon: Running... SD count = 27773, ADC count = 211800  ISR count = 104453[0m
+[0;32mI (189298) main-ECGMon: Running... SD count = 27773, ADC count = 214423  ISR count = 105859[0m
+[0;32mI (191298) main-ECGMon: Running... SD count = 27773, ADC count = 217047  ISR count = 107266[0m
+[0;32mI (193298) main-ECGMon: Running... SD count = 27773, ADC count = 219671  ISR count = 108676[0m
+[0;32mI (195298) main-ECGMon: Running... SD count = 27773, ADC count = 222291  ISR count = 110084[0m
+[0;32mI (197298) main-ECGMon: Running... SD count = 27773, ADC count = 224917  ISR count = 111495[0m
+[0;32mI (199298) main-ECGMon: Running... SD count = 27773, ADC count = 227537  ISR count = 112901[0m
+[0;32mI (201298) main-ECGMon: Running... SD count = 27773, ADC count = 230163  ISR count = 114311[0m
+[0;32mI (203298) main-ECGMon: Running... SD count = 27773, ADC count = 232781  ISR count = 115718[0m
+[0;32mI (205378) main-ECGMon: Running... SD count = 27773, ADC count = 235513  ISR count = 117185[0m
+[0;32mI (207378) main-ECGMon: Running... SD count = 27773, ADC count = 238141  ISR count = 118596[0m
+[0;32mI (209378) main-ECGMon: Running... SD count = 27773, ADC count = 240763  ISR count = 120004[0m
+[0;32mI (211378) main-ECGMon: Running... SD count = 27773, ADC count = 243391  ISR count = 121415[0m
+[0;32mI (213378) main-ECGMon: Running... SD count = 27773, ADC count = 246014  ISR count = 122824[0m
+[0;32mI (215418) main-ECGMon: Running... SD count = 27773, ADC count = 248694  ISR count = 124263[0m
+[0;32mI (217418) main-ECGMon: Running... SD count = 27773, ADC count = 251323  ISR count = 125674[0m
+[0;32mI (219418) main-ECGMon: Running... SD count = 27773, ADC count = 253944  ISR count = 127081[0m
+[0;32mI (221418) main-ECGMon: Running... SD count = 27773, ADC count = 256570  ISR count = 128491[0m
+[0;32mI (223418) main-ECGMon: Running... SD count = 27773, ADC count = 259194  ISR count = 129901[0m
+[0;32mI (225448) main-ECGMon: Running... SD count = 27773, ADC count = 261853  ISR count = 131330[0m
+[0;32mI (227448) main-ECGMon: Running... SD count = 27773, ADC count = 264481  ISR count = 132741[0m
+[0;32mI (229448) main-ECGMon: Running... SD count = 27773, ADC count = 267111  ISR count = 134152[0m
+[0;32mI (231448) main-ECGMon: Running... SD count = 27773, ADC count = 269737  ISR count = 135563[0m
+[0;32mI (233448) main-ECGMon: Running... SD count = 27773, ADC count = 272361  ISR count = 136974[0m
+[0;32mI (235528) main-ECGMon: Running... SD count = 27773, ADC count = 275090  ISR count = 138440[0m
+[0;32mI (237528) main-ECGMon: Running... SD count = 27773, ADC count = 277720  ISR count = 139852[0m
+[0;32mI (239528) main-ECGMon: Running... SD count = 27773, ADC count = 280348  ISR count = 141264[0m
+
+Script done on 2026-11-06 00:17:50-06:00 [COMMAND_EXIT_CODE="0"]

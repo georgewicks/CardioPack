@@ -79,3 +79,7 @@ Desktop.ini
 
 # MyST build outputs
 _build
+
+# Raw SD-card captures (multi-MB CSV traces; keep out of git)
+docs/logging-ref/**/ecg_trace.csv
+docs/logging-ref/**/motion.csv
