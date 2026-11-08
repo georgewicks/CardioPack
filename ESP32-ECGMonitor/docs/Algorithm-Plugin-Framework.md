@@ -166,7 +166,7 @@ static void __attribute__((constructor)) qrs_register(void) {
 }
 ```
 
-The existing [PushToECGProc](/home/gwicks/Cardiology_instrumentation/ESP32-ECGMonitor/components/QRSDetect/QRSDispatcher.c:37) call
+The existing [PushToECGProc](/home/gwicks/CardioPack/ESP32-ECGMonitor/components/QRSDetect/QRSDispatcher.c:37) call
 site in `main.c` becomes a registry lookup + `process()` — the behavior is
 identical, but now it's pluggable.
 
