@@ -5,6 +5,10 @@
 		},
 		{
 			"path": "ESP32-ECGSimulator"
+		},
+		{
+			"name": "CardioPack root",
+			"path": "."
 		}
 	],
 	"settings": {
