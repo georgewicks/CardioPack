@@ -1,0 +1,13 @@
+# CardioPack
+CardioPack is intended to be an "umbrella" project that will contain potentially many sub-projects that are related to Cardiac Health.
+The sub-project that initiated the idea behind CardioPack is the ECG monitoring system.
+
+# A little bit of history
+* I have been working in firmware for a few decades, working on imaging systems, signal analysis applications, along with GUI development. While I never worked formally on biomedical devices, there was always a very strong interest in that development work. 
+* I had read several biomedical textbooks, and one of which has always held great interest for me, namely "Biomedical Digital Signal Processing: C Language Examples and Laboratory Experiments for the IBM PC", edited by  Willis J. Tompkins. This is a fascinating lab based experimenters book on biomedical instrumentation. The section on how signal processing applied to QRS detection for electrocardiography held particular interest for me.
+* Years passed, and while I continued to review books and videos on the subject, I was never directly involved in biomedical instrumentation projects, per se. I retired in 2023, at the age of 67.
+* In April of 2024, while working in the garden in my backyard, I developed crushing chest sensations, and my neighbor, Isaac, rushed me to the hospital. Fortunately, I was diagnosed with serious heart blockage and I received Cardiac Catheterization at Evanston Hospital. 
+* I had been working part-time on the beginnings of a ECG monitor on and off for a few years, but certainly not on a full time basis. Post heart attack recovery led me to refocus my energies on the ECG monitoring system,
+* At the core of the project, the computing platform that I was working on is the Espressif ESP32 plaform. There are many development boards that are available, and they are all reasonably priced. The chief development IDE is Microsoft Visual Studio Code, which is freely available. Espressif has created the ESP-IDF extension for VSCode (Microsoft Visual Studio Code), which enables the developer to create and maintain ESP32 development on many platforms, including Windows, macOS, as well as Linux based operating systems.
+* I had been able to shake out most of the various sensor boards and other devices, however, due to other health related issues, such as GI problems, spinal stenosis issues, and then severe cataract problems, my work was then slowing down. I reluctantly decided to look into the use of AI assistance, and I was pleasantly surprised by it. It has helped immensely which helped me overcome physical disabilities
+* The result of this AI interaction led me to a rather promising package that may prove to be a good platform that can be expanded upon.
