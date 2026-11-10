@@ -16,14 +16,14 @@ The sub-project that initiated the idea behind CardioPack is the ECG monitoring 
 
 # Project requirments
 THe projects are developed with open-source tools. All of the projects were developed using the following:
-* Ubuntu 24.04. Ubuntu was chosen as the development operating system in order to circumvent the quirkiness of the Microsoft Windows platform. No slight against Microsoft is intended here. From personal perspective, I have that Linux in general has a very streamlined and easy interface for firmware development. Ubuntu can be downloaded from https://ubuntu.com/
-* Git. Git is needed for software version control. https://git-scm.com/
-* Microsoft Visual Studio Code. You can download it from https://code.visualstudio.com/
-* Espressif's ESP-IDF Visual Studio Code Extension. After Visual Studio code is installed, you can retrieve & install the Extension via the Left Hand Side panel - you will find an icon with small blocks, with one of the blocks tilted on its side. In the Extensions search field, you can type ESP-IDF, and you will list of corresponding extension - the top one labeled "ESP-IDF" is the one to pick.
-* There are tutorials available from the Espressif website that will be able to walk the user through a list of steps to do in order to bring up the necessary development (TBD).
+* **Ubuntu**. Ubuntu was chosen as the development operating system in order to circumvent the quirkiness of the Microsoft Windows platform. No slight against Microsoft is intended here. From personal perspective, I have that Linux in general has a very streamlined and easy interface for firmware development. Ubuntu can be downloaded from https://ubuntu.com/
+* **Git**. Git is needed for software version control. https://git-scm.com/
+* **Microsoft Visual Studio Code**. You can download it from https://code.visualstudio.com/
+* **Espressif's ESP-IDF Visual Studio Code Extension**. After Visual Studio code is installed, you can retrieve & install the Extension via the Left Hand Side panel - you will find an icon with small blocks, with one of the blocks tilted on its side. In the Extensions search field, you can type ESP-IDF, and you will list of corresponding extension - the top one labeled "ESP-IDF" is the one to pick.
+* There are tutorials available from the Espressif website that will be able to walk the user through a list of steps to do in order to bring up the necessary development (TBD). **Python** is also a very key package.
 
 # AI is a significant contributor to the sub-projects
-As explained in detail below, AI was used extensively in the development. AI has received a unfortunate and unfair media coverage. AI is an excellent tool that can benefit the development process. The problems associated with AI are actually caused by who is controlling it, NOT with the tool itself.
+As explained in detail below, AI was used extensively in the development. AI has received a lot of unfortunate and unfair media coverage. AI is an excellent tool that can benefit the development process. The problems associated with AI are actually caused by who is controlling it, NOT with the tool itself.
 
 # Overview of the ECG monitoring system, ESP32-ECGMonitor.
 
