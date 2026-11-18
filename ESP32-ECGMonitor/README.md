@@ -20,7 +20,7 @@ The following is a very rough sketch of the ECG system. NOTE: the drawing reflec
     - **ESP32 DevKit WROOM-32U**. (Note, I have recently tried the **ESP32S3 supermini board**, which is smaller, and that works well)
         * <img src="./images/small-ESP32S3-sm.jpg" alt="ESP32S3" width="30%">
     - **(1) ADS1115 Breakout boards. 16-bit ADC, 4 ADC channels**
-        * <img src="./images/ads1115" alt="ADS1115" width="30%">
+        * <img src="./images/ads1115.jpg" alt="ADS1115" width="30%">
     - **(4 are used for a full 12 electrode setup) AD8232 Physiological Monitor**.
          * <img src="images/ad8232.jpg" alt="AD8232" width="30%">
     - **RTC. Needed for real-time charting updates for time stamping. (DS3231). In addition, the board also has a AT24C32 which will be used as storage for a configuration file**
