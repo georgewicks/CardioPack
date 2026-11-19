@@ -21,22 +21,22 @@ The projects are developed with open-source tools. All of the projects were deve
 
 * **Git**. Git is needed for software version control. https://git-scm.com/
 
-* **Microsoft Visual Studio Code**. You can download it from https://code.visualstudio.com/
+* **Microsoft Visual Studio Code**. Available from https://code.visualstudio.com/
 
-* **Espressif's ESP-IDF Visual Studio Code Extension**. After Visual Studio code is installed, you can retrieve & install the Extension via the Left Hand Side panel - you will find an icon with small blocks, with one of the blocks tilted on its side. In the Extensions search field, you can type ESP-IDF, and you will list of corresponding extension - the top one labeled "**ESP-IDF**" is the one to pick.
+* **Espressif's ESP-IDF Visual Studio Code Extension**. After Visual Studio Code is installed, the extension is available in the Extensions view in the left-hand Activity Bar (the icon with several small blocks). Searching for ESP-IDF lists related extensions; the top result labeled "**ESP-IDF**" is the one to install.
 
 * There are tutorials available on Espressif's website that will be able to walk the user through a list of steps to bring up the necessary development (TBD). **Python** is also a very key package.
 
 I had written up a version of the entire installation process, but it has aged considerably, and would have to be updated, probably with the assistance of AI. I may also ask AI to create an installation targeting an Ubuntu VM on the Windows 11 platform, thus maintaining an identical environment to what I currently have.
 
 # AI is a significant contributor to the sub-projects
-As I explain in detail below, AI was used extensively in the development. AI has received a lot of unfortunate unfair media coverage. AI is an excellent tool in the development process. The problems associated with AI are caused by who is controlling it, NOT with the tool itself.
+As explained in detail below, AI was used extensively in the development. AI has received a lot of unfortunate unfair media coverage. AI is an excellent tool in the development process. The problems associated with AI are more likely caused by who is controlling it, NOT with the tool itself.
 
 # Overview of the ECG monitoring system, ESP32-ECGMonitor.
-For now, please see ESP32-ECGMonitor project folder.
+Project folder: [ESP32-ECGMonitor](./ESP32-ECGMonitor/).
 
 # Overview of the ECG simulator, ESP32-ECGSimulator.
-For now, please see ESP32-ECGSimulator project folder.
+Project folder: [ESP32-ECGSimulator](./ESP32-ECGSimulator/).
 
 # Cardiac Health information based projects.
 This is intended to be a resource guide for public health issues related to cardiac health. There are several issues that I believe will come to the forefront of public health concerns that will face all countries across the globe.
@@ -63,16 +63,16 @@ Pollution has been impacting Cardiac Health across the globe in several areas. F
 * Mechanisms of Harm:
 
 
-An in-depth discussion can be found in docs/Principle Cardiac Health impacts associated with pollution.odt.
+An in-depth discussion is available in [Principle Cardiac Health impacts associated with pollution.odt](./docs/Principle%20Cardiac%20Health%20impacts%20associated%20with%20pollution.odt).
 
 ## Cholesterol control to improve Cardiac Health.
-
+Some speculation on how pollution could impact the medical community with regards to control of cholesterol can be found in docs/Recent work on Cholesterol control in international medical communities in light of pollution.odt
 
 ## Microplastics and Cardiac Health.
 The overwhelming amount of plastic waste has led to the phenomena of microplastics, and they are now found within the human population.
 
 * Microplastics and Atherosclerosis. I first learned about this while I was in the hospital after undergoing a cardiac catheterization. [^MicroplasticCardiac]. 
-**Please Note**: Personal responsibility: Every person must take for their health care. I was prescribed statins to control my cholesterol levels. However, the statins seemed to increase muscle pains and caused me to lose a great deal of sleep at night. I discontinued the statins due to the severe side effects, and the cholesterol levels undoubtedly contributed to the plaque buildup in my arteries. Fortunately, there are better ways to control cholesterol. In my case, I am using Alirocumab, an injectable, which is not a statin. (NOTE: Do not take my personal notes to be medical advice - your physician is the best judge).
+**Note**: Personal responsibility: Every person must take for their health care. I was prescribed statins to control my cholesterol levels. However, the statins seemed to increase muscle pains and caused me to lose a great deal of sleep at night. I discontinued the statins due to the severe side effects, and the cholesterol levels undoubtedly contributed to the plaque buildup in my arteries. Fortunately, there are better ways to control cholesterol. In my case, I am using Alirocumab, an injectable, which is not a statin. (NOTE: These personal notes are not medical advice; treatment decisions should be discussed with a physician.)
 
 ## Wildfires and Cardiac Health.
 This past summer (2026) witnessed a severe drop in Air Quality due to wild fires from Colorado and Canada. Air quality is expected to only get worse.

@@ -32,6 +32,7 @@
 #include "spoof_i2cdev.h"
 #include "common.h"
 #include "ADCCapture.h"
+#include "oled_display.h"
 #include "Logging.h"
 #include "ISHNE.h"
 #include "MPU6050.h"
@@ -1248,6 +1249,11 @@ void app_main(void)
     }
 
     InitI2C();
+    const esp_err_t oled_err = oled_display_init(bus_handle, OLED_DISPLAY_ADDR);
+    if (oled_err != ESP_OK) {
+        ESP_LOGW(TAG, "SSD1306 OLED unavailable at 0x%02X; continuing without display: %s",
+                 OLED_DISPLAY_ADDR, esp_err_to_name(oled_err));
+    }
     
     //Initialize NVS
     esp_err_t ret = nvs_flash_init();

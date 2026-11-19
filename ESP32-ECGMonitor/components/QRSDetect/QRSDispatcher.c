@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 #include "pan_tompkins.h"
+#include "oled_display.h"
 
 /* TODO: This type duplicates ADCCapture.h (main/ADCCapture.h). Move to a
  * shared header and include it from both components to avoid drift. */
@@ -47,6 +48,9 @@ void PushToECGProc(ECG_adc_sample_t *curECGptr)
 
     float prep[NUM_SAMPLES];
 
+    /* The AD8232 output is connected to ADC channel 2. */
+    oled_display_push_samples(curECGptr->samples[2], NUM_SAMPLES);
+
     for (int ch = 0; ch < NUM_CHANNELS; ch++) {
         for (int i = 0; i < NUM_SAMPLES; i++) {
             /* Raw ADC codes are unsigned two's-complement halves of the
@@ -61,6 +65,9 @@ void PushToECGProc(ECG_adc_sample_t *curECGptr)
             printf("QRS ch%d: R-peak at sample %lu, RR = %lu ms\n",
                    ch, (unsigned long)s_beats[b].index,
                    (unsigned long)s_beats[b].rr_ms);
+            if (ch == 2) {
+                oled_display_report_rr(s_beats[b].rr_ms);
+            }
         }
     }
 }
